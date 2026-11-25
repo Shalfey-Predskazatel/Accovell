@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window size="{{window.width}},{{window.height}}" caption="0,0,0,68" roundcorner="{{window.radius}},{{window.radius}}" gdiplustext="true" textrenderinghint="3">
+  <Font id="0" name="{{font.family}}" size="{{font.bodySize}}" default="true" />
+  <Font id="1" bold="true" name="Segoe UI Semibold" size="29" />
+  <Font id="2" bold="true" name="Segoe UI Semibold" size="15" />
+  <Container name="page-root">
+    <LightBackdrop float="0,0,1,1" canvascolor="{{color.canvas}}" bluecolor="{{color.blueTint}}" pinkcolor="{{color.pinkTint}}" />
+    <VerticalLayout float="0,0,1,1">
+      <HorizontalLayout height="72" inset="30,17,24,17" childvalign="vcenter">
+        <BrandMark animated="true" outercolor="{{color.markOuter}}" outlinecolor="{{color.markOutline}}" raycolor="{{color.markRays}}" width="38" height="38" brandcolor="{{color.danger}}" />
+        <Label text="Codex Accounts" font="2" textcolor="{{color.textPrimary}}" padding="12,0,0,0" />
+        <Control />
+        <CaptionButton name="closebtn" kind="close" iconcolor="{{color.windowClose}}" hoticoncolor="{{color.windowCloseHot}}" hotbkcolor="{{color.windowCloseBg}}" pushedbkcolor="{{color.windowClosePressed}}" width="36" height="34" borderround="10,10" />
+      </HorizontalLayout>
+      <VerticalLayout inset="155,76,155,56">
+        <Control />
+        <Label text="{{string.uninstallError.title}}" font="1" textcolor="{{color.textPrimary}}" height="56" align="center" />
+        <Label name="status" text="{{string.uninstallError.subtitle}}" textcolor="{{color.textSecondary}}" height="74" align="center" endellipsis="true" />
+        <Control height="24" />
+        <HorizontalLayout height="52"><Control /><SoftButton ripplecolor="{{color.brandEnd}}" gradientstart="{{color.brandStart}}" gradientend="{{color.brandEnd}}" name="primary" text="{{string.uninstallError.retry}}" textcolor="{{color.ink}}" bkcolor="{{color.brand}}" hotbkcolor="{{color.brandHover}}" pushedbkcolor="{{color.brandPressed}}" width="176" height="50" borderround="13,13" font="2" /><Control /></HorizontalLayout>
+        <Control />
+      </VerticalLayout>
+    </VerticalLayout>
+  </Container>
+</Window>
+

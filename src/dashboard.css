@@ -1,0 +1,253 @@
+/* Dashboard surfaces and window layout. The installer and tray have independent shells. */
+.app-shell.theme-dark {
+  --dashboard-card: rgba(39, 30, 53, .92);
+  --dashboard-raised: rgba(52, 38, 70, .95);
+  --dashboard-edge: #5f4c72;
+  --dashboard-accent: #d7a2ff;
+  --dashboard-focus: #ead1ff;
+}
+
+.app-shell.theme-light {
+  --dashboard-card: rgba(255, 253, 255, .95);
+  --dashboard-raised: rgba(246, 237, 255, .96);
+  --dashboard-edge: #c8b0d9;
+  --dashboard-accent: #7446a2;
+  --dashboard-focus: #65318b;
+}
+
+#root .app-shell :is(.account-card, .active-card, .events-card, .overview-card-inline) {
+  border: 1px solid var(--dashboard-edge) !important;
+  border-radius: 16px !important;
+  background: var(--dashboard-card) !important;
+  box-shadow: 0 4px 16px rgb(22 8 33 / .13), inset 0 1px rgb(255 255 255 / .08) !important;
+}
+
+#root .app-shell .account-card.account-active {
+  background: var(--dashboard-raised) !important;
+  border-color: var(--dashboard-accent) !important;
+}
+
+.app-shell .account-list {
+  grid-auto-rows: auto !important;
+}
+
+.app-shell .account-list .account-card {
+  min-height: 0 !important;
+  height: auto !important;
+  gap: 0 !important;
+}
+
+.app-shell .account-list .account-name b {
+  font-size: .8125rem !important;
+  line-height: 1.25 !important;
+}
+
+.app-shell .account-list .quota-badge-label {
+  letter-spacing: .035em !important;
+}
+
+.app-shell .account-list .quota-badge b {
+  font-variant-numeric: tabular-nums;
+}
+
+.app-shell .account-search-field-static input[type="search"] {
+  font-size: .75rem !important;
+}
+
+.app-shell :is(button, input, textarea):focus-visible {
+  outline: 2px solid var(--dashboard-focus) !important;
+  outline-offset: 2px !important;
+}
+
+.app-shell .modal-sheet:focus-visible {
+  outline: 2px solid var(--dashboard-focus) !important;
+  outline-offset: 3px !important;
+}
+
+.app-shell .account-search-field:focus-within {
+  outline: 2px solid var(--dashboard-focus) !important;
+  outline-offset: 2px;
+}
+
+.app-shell .account-search-field input:focus-visible {
+  outline: none !important;
+}
+
+#root .app-shell .modal-sheet .panel-content > h2 {
+  font: 650 clamp(1.5rem, 3.3vw, 2rem) / 1.1 var(--font-ui) !important;
+  letter-spacing: -.035em !important;
+  color: var(--text) !important;
+}
+
+@media (min-width: 820px) {
+  #root .app-shell {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  #root .app-shell .main-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2.35fr) minmax(245px, 1fr) !important;
+    grid-template-rows: minmax(0, 1fr) !important;
+    flex: 1 1 0%;
+    min-height: 0 !important;
+    gap: 14px !important;
+    padding: 14px 16px 12px !important;
+  }
+
+  #root .app-shell .left-column {
+    order: 0 !important;
+    min-width: 0;
+    min-height: 0 !important;
+    gap: 12px;
+  }
+
+  #root .app-shell .right-column {
+    order: 0 !important;
+    position: relative !important;
+    inset: auto !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: max-content minmax(132px, 1fr) auto !important;
+    align-self: stretch !important;
+    align-items: stretch !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    overflow: auto !important;
+    gap: 12px !important;
+  }
+
+  #root .app-shell .right-column > :is(.active-card, .events-card) {
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  #root .app-shell .account-list-scroll {
+    max-height: none !important;
+  }
+
+  #root .app-shell .welcome-row {
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr) !important;
+    min-height: 0 !important;
+    height: auto !important;
+    gap: 12px !important;
+    align-items: center !important;
+  }
+
+  #root .app-shell .welcome-row > .overview-card-inline {
+    min-height: 88px !important;
+    height: auto !important;
+    padding: 12px !important;
+  }
+}
+
+@media (min-width: 820px) and (max-width: 1050px) {
+  #root .app-shell .overview-card-inline .overview-orbit {
+    display: none !important;
+  }
+
+  #root .app-shell .overview-card-inline .overview-copy {
+    width: 100% !important;
+  }
+
+  #root .app-shell .overview-card-inline .overview-stats {
+    grid-template-columns: minmax(0, .65fr) 1px minmax(0, 1fr) 1px minmax(0, 1.35fr) !important;
+  }
+
+  #root .app-shell .section-heading {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-areas: "title add" "toolbar toolbar" !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  #root .app-shell .section-heading > .account-heading-actions {
+    display: contents !important;
+  }
+
+  #root .app-shell .section-heading .account-auth-actions {
+    grid-area: add !important;
+  }
+
+  #root .app-shell .account-view-toolbar {
+    grid-area: toolbar !important;
+    justify-self: stretch !important;
+    display: grid !important;
+    grid-template-columns: minmax(100px, 1fr) minmax(105px, .8fr) minmax(119px, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #root .app-shell .account-view-toolbar > * {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  #root .app-shell .account-layout-switch {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  #root .app-shell .account-layout-switch button {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #root .app-shell .active-card .active-account-info h2 {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Keep the close action in reach while scrolling long settings panels. */
+#root .app-shell :is(.modal-settings, .modal-codex) > .modal-close {
+  position: sticky !important;
+  top: 0 !important;
+  right: auto !important;
+  float: right;
+  margin-block-end: -32px;
+  z-index: 2;
+}
+
+@container accounts (max-width: 610px) {
+  #root .app-shell .account-list:is(.account-columns-2, .account-columns-3) .account-card-top {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    min-height: 0 !important;
+    gap: 8px !important;
+  }
+
+  #root .app-shell .quota-line-label > span {
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    text-overflow: clip !important;
+  }
+
+  #root .app-shell .account-list:is(.account-columns-2, .account-columns-3) .quota-badge {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 4px 8px !important;
+  }
+
+  #root .app-shell .account-list:is(.account-columns-2, .account-columns-3) .account-card-bottom {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  #root .app-shell .account-list:is(.account-columns-2, .account-columns-3) .account-actions {
+    justify-self: start !important;
+    max-width: 100%;
+  }
+
+  #root .app-shell .account-list.account-columns-3 .account-actions {
+    flex-wrap: wrap;
+  }
+}

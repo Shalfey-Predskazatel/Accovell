@@ -1,0 +1,1745 @@
+/* Final visual pass for the two application surfaces. Keep the light palette
+   clear and neutral, while leaving the existing glass toggle in control of blur. */
+.app-shell.theme-light {
+  --ink: #fbfaff;
+  --ink-soft: #f6f3fb;
+  --panel: rgba(255, 255, 255, .88);
+  --panel-raised: #fff;
+  --panel-muted: #faf8fd;
+  --text: #2b2037;
+  --muted: #584d67;
+  --quiet: #6a6077;
+  background:
+    radial-gradient(ellipse at 11% -10%, rgba(113, 56, 232, .055), transparent 40%),
+    radial-gradient(ellipse at 96% 108%, rgba(141, 113, 198, .045), transparent 42%),
+    linear-gradient(145deg, #fff 0%, #fcfbff 55%, #f8f6fc 100%) !important;
+  background-color: #fff !important;
+}
+.app-shell.theme-light.effects-on {
+  background:
+    radial-gradient(ellipse at 11% -10%, rgba(113, 56, 232, .06), transparent 40%),
+    radial-gradient(ellipse at 96% 108%, rgba(141, 113, 198, .05), transparent 42%),
+    linear-gradient(145deg, rgba(255,255,255,.86), rgba(251,249,255,.79) 55%, rgba(248,246,252,.82)) !important;
+  background-color: #fff !important;
+}
+.app-shell.effects-on.theme-light::before {
+  background: radial-gradient(280px circle at var(--pointer-x, 50%) var(--pointer-y, 0%), rgba(126, 78, 205, .15), transparent 72%) !important;
+  mix-blend-mode: normal !important;
+}
+
+.app-shell.theme-light.effects-on :is(.overview-card, .account-card, .active-card, .events-card, .modal-sheet, .lock-card, .toast) {
+  color: #30233d !important;
+  border-color: rgba(83, 59, 112, .17) !important;
+  border-top-color: rgba(255,255,255,.94) !important;
+  background: linear-gradient(145deg, rgba(255,255,255,.8), rgba(250,247,254,.72)) !important;
+  box-shadow: 0 18px 44px rgba(48, 32, 67, .11), inset 0 1px rgba(255,255,255,.94) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(150%) !important;
+  backdrop-filter: blur(22px) saturate(150%) !important;
+}
+.app-shell.theme-light.effects-on .account-card.account-active {
+  background: radial-gradient(ellipse at 0% 0%, rgba(139, 91, 207, .11), transparent 48%), linear-gradient(145deg, rgba(255,255,255,.88), rgba(247,242,253,.78)) !important;
+}
+.app-shell.theme-light.effects-off :is(.overview-card, .account-card, .active-card, .events-card, .modal-sheet, .lock-card, .toast) {
+  color: #30233d !important;
+  border-color: rgba(83, 59, 112, .17) !important;
+  background: linear-gradient(145deg, #fff, #faf8fd) !important;
+}
+
+/* Restore a clean, translucent material in light dialogs and their nested
+   settings cards; previous end-of-file overrides made these fully opaque. */
+.app-shell.theme-light.effects-on .modal-sheet,
+.app-shell.theme-light.effects-on .modal-sheet :is(.integration-box, .interval-control, .security-settings, .backup-preview, .prompt-library, .prompt-empty) {
+  background: linear-gradient(145deg, rgba(255,255,255,.83), rgba(249,246,253,.76)) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
+  backdrop-filter: blur(20px) saturate(145%) !important;
+}
+.app-shell.theme-light.effects-off .modal-sheet :is(.integration-box, .interval-control, .security-settings, .backup-preview, .prompt-library, .prompt-empty) {
+  background: #fff !important;
+}
+.app-shell.theme-light .modal-sheet :where(.setting-copy b, .field-label, .security-heading b,
+  .prompt-library-head b, .integration-box b, .interval-summary > span,
+  .model-picker-label, .panel-content h2) { color: #2d2239 !important; }
+.app-shell.theme-light .modal-sheet :where(.setting-copy small, .security-heading small,
+  .prompt-library-head small, .integration-box p, .interval-summary small,
+  .model-picker-note, .modal-intro, .interval-readable, .wheel-neighbor,
+  .wheel-current span, .settings-tip, .field-label > span) {
+  color: #554a62 !important;
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+}
+.app-shell.theme-dark .modal-sheet :where(.setting-copy b, .field-label, .security-heading b,
+  .prompt-library-head b, .integration-box b, .interval-summary > span,
+  .model-picker-label, .panel-content h2) {
+  color: #f3eaf8 !important;
+  font-size: 10px !important;
+}
+.app-shell.theme-dark .modal-sheet :where(.setting-copy small, .security-heading small,
+  .prompt-library-head small, .integration-box p, .interval-summary small,
+  .model-picker-note, .modal-intro, .interval-readable, .wheel-neighbor,
+  .wheel-current span, .field-label > span, .interval-setting div small,
+  .range-captions, .panel-footer > span, .prompt-empty, .backup-preview p) {
+  color: #c4b5ce !important;
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+}
+.app-shell.theme-dark .modal-sheet .settings-tip { color: #d8c49e !important; font-size: 10px !important; }
+.app-shell.theme-light .modal-codex :is(.choice-picker-trigger, .model-picker > input, .field-label input, .field-label textarea, .field-label select) {
+  color: #2d2239 !important;
+  border-color: rgba(83, 59, 112, .23) !important;
+  background: rgba(255,255,255,.84) !important;
+}
+
+/* Use the same toolbar control shape, tint, and hover response in the app and
+   installer. The language control is intentionally the same 36px square. */
+.app-shell.theme-light :is(.toolbar-button, .window-control, .account-auth-tool,
+  .account-layout-switch button, .account-density-button, .account-sort-control),
+.installer-shell.theme-light .installer-toolbar :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close) {
+  color: #5b4770 !important;
+  border-color: rgba(90, 63, 121, .2) !important;
+  background: rgba(255,255,255,.72) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.92), 0 3px 10px rgba(54,37,75,.055) !important;
+  transition: color .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s cubic-bezier(.2,.8,.2,1) !important;
+}
+.app-shell.theme-light :is(.toolbar-button, .window-control, .account-auth-tool,
+  .account-layout-switch button, .account-density-button):hover:not(:disabled),
+.installer-shell.theme-light .installer-toolbar :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close):hover:not(:disabled) {
+  color: #5a2bb0 !important;
+  border-color: rgba(113, 56, 232, .35) !important;
+  background: rgba(245,239,255,.96) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.98), 0 5px 13px rgba(72,45,112,.1) !important;
+  transform: translateY(-1px) !important;
+}
+.app-shell.theme-light :is(.toolbar-button.toolbar-active, .account-layout-switch button.selected, .account-density-button.selected),
+.installer-shell.theme-light .installer-toolbar .toolbar-active {
+  color: #5b2db3 !important;
+  border-color: rgba(113,56,232,.34) !important;
+  background: rgba(229,216,251,.88) !important;
+}
+.app-shell.theme-dark :is(.toolbar-button, .window-control, .account-auth-tool,
+  .account-layout-switch button, .account-density-button, .account-sort-control),
+.installer-shell.theme-dark .installer-toolbar :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close) {
+  color: #d9c7e5 !important;
+  border-color: rgba(233,210,248,.18) !important;
+  background: rgba(255,255,255,.055) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.12), 0 3px 10px rgba(14,7,23,.12) !important;
+}
+.app-shell.theme-dark :is(.toolbar-button, .window-control, .account-auth-tool,
+  .account-layout-switch button, .account-density-button):hover:not(:disabled),
+.installer-shell.theme-dark .installer-toolbar :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close):hover:not(:disabled) {
+  color: #fff !important;
+  border-color: rgba(223,173,255,.42) !important;
+  background: rgba(177,112,224,.17) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.2), 0 5px 13px rgba(14,7,23,.18) !important;
+  transform: translateY(-1px) !important;
+}
+.app-shell.theme-dark :is(.toolbar-button.toolbar-active, .account-layout-switch button.selected, .account-density-button.selected),
+.installer-shell.theme-dark .installer-toolbar .toolbar-active {
+  color: #fff !important;
+  border-color: rgba(223,173,255,.4) !important;
+  background: rgba(177,112,224,.2) !important;
+}
+.app-shell .toolbar-button.toolbar-language,
+.installer-shell .installer-toolbar .installer-language-text {
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  padding: 0 !important;
+  border-radius: 12px !important;
+  font: 600 9px/1 var(--font-mono) !important;
+}
+.app-shell .toolbar-button.toolbar-language span,
+.installer-shell .installer-language-text span { line-height: 1 !important; }
+.installer-shell .installer-toolbar .installer-tool,
+.installer-shell .installer-toolbar .toolbar-button {
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  padding: 0 !important;
+  border-radius: 12px !important;
+}
+.installer-shell.theme-light {
+  --installer-bg: #fbfaff;
+  --installer-panel: rgba(255,255,255,.78);
+  --installer-panel-strong: rgba(255,255,255,.88);
+  --installer-line: rgba(90,63,121,.2);
+  --installer-text: #2d2239;
+  --installer-muted: #554a62;
+  background:
+    radial-gradient(ellipse at 11% -12%, rgba(113,56,232,.06), transparent 40%),
+    radial-gradient(ellipse at 94% 108%, rgba(141,113,198,.05), transparent 42%),
+    linear-gradient(145deg, #fff, #fcfaff 55%, #f8f6fc) !important;
+  background-color: #fff !important;
+}
+.installer-shell.effects-on.theme-light {
+  background:
+    radial-gradient(ellipse at 11% -12%, rgba(113,56,232,.065), transparent 40%),
+    radial-gradient(ellipse at 94% 108%, rgba(141,113,198,.055), transparent 42%),
+    linear-gradient(145deg, rgba(255,255,255,.86), rgba(251,249,255,.79) 55%, rgba(248,246,252,.82)) !important;
+  background-color: #fff !important;
+}
+.installer-shell.effects-on.theme-light::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--pointer-opacity, 0);
+  background: radial-gradient(280px circle at var(--pointer-x, 50%) var(--pointer-y, 0%), rgba(126,78,205,.15), transparent 72%);
+  transition: opacity .24s ease;
+}
+.installer-shell.effects-on.theme-dark::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--pointer-opacity, 0);
+  background: radial-gradient(280px circle at var(--pointer-x, 50%) var(--pointer-y, 0%), rgba(215,151,255,.19), transparent 72%);
+  mix-blend-mode: screen;
+  transition: opacity .24s ease;
+}
+.installer-shell > :not(.installer-atmosphere) { position: relative; z-index: 1; }
+.installer-shell.effects-on.theme-light .installer-card {
+  color: #30233d !important;
+  border-color: rgba(83,59,112,.17) !important;
+  background: linear-gradient(145deg, rgba(255,255,255,.82), rgba(249,246,253,.73)) !important;
+  box-shadow: 0 20px 48px rgba(48,32,67,.11), inset 0 1px rgba(255,255,255,.94) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(150%) !important;
+  backdrop-filter: blur(22px) saturate(150%) !important;
+}
+.installer-shell.effects-off.theme-light .installer-card { background: linear-gradient(145deg,#fff,#faf8fd) !important; }
+.installer-shell.theme-light .installer-path input,
+.installer-shell.theme-light .installer-path button {
+  color: #30233d !important;
+  border-color: rgba(83,59,112,.22) !important;
+  background: rgba(255,255,255,.78) !important;
+}
+
+/* Primary and secondary actions share one violet/neutral recipe across both
+   routes; success actions retain their separate semantic green styling. */
+.app-shell.theme-light .button-primary:not(.panel-footer .button-primary),
+.installer-shell.theme-light .button-primary,
+.app-shell.theme-light .account-auth-actions > .add-account:not(.add-account-waiting):not(.account-auth-cancel) {
+  color: #fff !important;
+  border-color: rgba(73,39,130,.45) !important;
+  background: linear-gradient(135deg,#7944cf,#6332b2) !important;
+  box-shadow: 0 5px 14px rgba(79,43,133,.18), inset 0 1px rgba(255,255,255,.24) !important;
+}
+.app-shell.theme-light .button-primary:not(.panel-footer .button-primary):hover:not(:disabled),
+.installer-shell.theme-light .button-primary:hover:not(:disabled),
+.app-shell.theme-light .account-auth-actions > .add-account:not(.add-account-waiting):not(.account-auth-cancel):hover:not(:disabled) {
+  color: #fff !important;
+  border-color: rgba(69,35,125,.62) !important;
+  background: linear-gradient(135deg,#8752dc,#6c39bd) !important;
+}
+.app-shell.theme-light .button-secondary,
+.installer-shell.theme-light .button-secondary {
+  color: #443650 !important;
+  border-color: rgba(83,59,112,.2) !important;
+  background: rgba(255,255,255,.76) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.94), 0 3px 10px rgba(54,37,75,.055) !important;
+}
+.app-shell.theme-light .button-secondary:hover:not(:disabled),
+.installer-shell.theme-light .button-secondary:hover:not(:disabled) {
+  color: #4f287d !important;
+  border-color: rgba(113,56,232,.3) !important;
+  background: rgba(244,238,253,.97) !important;
+}
+
+/* Keep the sort label optically centered between its fixed side icons. Give
+   the login action cluster a slight desktop nudge to balance its right edge. */
+.app-shell .account-sort-trigger {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.app-shell .account-sort-trigger > span { width: 100% !important; text-align: center !important; }
+@media (min-width: 1101px) {
+  .app-shell .account-auth-actions { margin-inline-end: 5px !important; }
+}
+
+/* The exit icon previously inherited a red foreground from the generic light
+   theme danger rule, so it disappeared against this button's red fill. */
+.app-shell .modal-exit .exit-actions .button-danger > svg {
+  color: #fff !important;
+  stroke: #fff !important;
+  opacity: 1 !important;
+}
+.app-shell .modal-exit .exit-actions .button-danger > svg * {
+  color: #fff !important;
+  stroke: #fff !important;
+  opacity: 1 !important;
+}
+
+/* Keep the mouse reflection visible on pale glass instead of washing it out. */
+.app-shell.effects-on.theme-light .pointer-glass-active::after,
+.installer-shell.effects-on.theme-light .pointer-glass-active::after {
+  background: radial-gradient(ellipse 240px 150px at var(--glass-x) var(--glass-y), rgba(115,67,191,.22), rgba(255,255,255,.18) 35%, transparent 76%) !important;
+}
+
+/* The app and setup header use one control grid: identical button geometry,
+   one icon size, and one Lucide stroke/color per theme. Earlier responsive
+   and installer-specific rules made a few controls 33–35px and recolored
+   active icons independently. */
+.app-shell.theme-light,
+.installer-shell.theme-light { --toolbar-icon-ink: #5d4078; }
+.app-shell.theme-dark,
+.installer-shell.theme-dark { --toolbar-icon-ink: #dbc9e8; }
+
+.app-shell .titlebar .toolbar,
+.installer-shell .installer-toolbar {
+  gap: 6px !important;
+}
+.app-shell .titlebar .toolbar > :nth-child(5) { margin-left: 0 !important; }
+
+.app-shell .titlebar .toolbar > .toolbar-button,
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close) {
+  appearance: none !important;
+  box-sizing: border-box !important;
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  border-width: 1px !important;
+  border-radius: 12px !important;
+  line-height: 0 !important;
+}
+
+.app-shell .titlebar .toolbar > .toolbar-button > svg,
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close) > svg {
+  display: block !important;
+  flex: 0 0 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+  color: var(--toolbar-icon-ink) !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.app-shell .titlebar .toolbar > .toolbar-button,
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close) {
+  color: var(--toolbar-icon-ink) !important;
+}
+.app-shell .titlebar .toolbar > .toolbar-button:hover:not(:disabled),
+.app-shell .titlebar .toolbar > .toolbar-button.toolbar-active,
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close):hover:not(:disabled),
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button).toolbar-active {
+  color: var(--toolbar-icon-ink) !important;
+}
+
+.app-shell.theme-light .titlebar .toolbar > .toolbar-button,
+.installer-shell.theme-light .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close) {
+  border-color: rgba(90,63,121,.2) !important;
+  background: rgba(255,255,255,.72) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.92), 0 3px 10px rgba(54,37,75,.055) !important;
+}
+.app-shell.theme-light .titlebar .toolbar > .toolbar-button:hover:not(:disabled),
+.installer-shell.theme-light .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close):hover:not(:disabled) {
+  border-color: rgba(113,56,232,.35) !important;
+  background: rgba(245,239,255,.96) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.98), 0 5px 13px rgba(72,45,112,.1) !important;
+}
+.app-shell.theme-light .titlebar .toolbar > .toolbar-button.toolbar-active,
+.installer-shell.theme-light .installer-toolbar > :is(.installer-tool, .toolbar-button).toolbar-active {
+  border-color: rgba(113,56,232,.3) !important;
+  background: rgba(229,216,251,.84) !important;
+}
+
+.app-shell.theme-dark .titlebar .toolbar > .toolbar-button,
+.installer-shell.theme-dark .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close) {
+  border-color: rgba(233,210,248,.18) !important;
+  background: rgba(255,255,255,.055) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.12), 0 3px 10px rgba(14,7,23,.12) !important;
+}
+.app-shell.theme-dark .titlebar .toolbar > .toolbar-button:hover:not(:disabled),
+.installer-shell.theme-dark .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close):hover:not(:disabled) {
+  border-color: rgba(223,173,255,.38) !important;
+  background: rgba(177,112,224,.15) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.18), 0 5px 13px rgba(14,7,23,.18) !important;
+}
+.app-shell.theme-dark .titlebar .toolbar > .toolbar-button.toolbar-active,
+.installer-shell.theme-dark .installer-toolbar > :is(.installer-tool, .toolbar-button).toolbar-active {
+  border-color: rgba(223,173,255,.34) !important;
+  background: rgba(177,112,224,.16) !important;
+}
+
+.app-shell .titlebar .toolbar > .toolbar-button > span,
+.installer-shell .installer-toolbar > .installer-language-text > span {
+  color: var(--toolbar-icon-ink) !important;
+  line-height: 1 !important;
+}
+
+/* Keep header controls optically square in both shells. The general glass
+   hover effect tilts/stretches its target, and the shared bubble animation
+   applies rotation plus non-uniform scale; both made these small button
+   backgrounds look crooked. Keep the press feedback, but scale uniformly. */
+.app-shell .titlebar .toolbar > .toolbar-button,
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close) {
+  box-sizing: border-box !important;
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  border-radius: 12px !important;
+  transform: none !important;
+  transform-origin: center center !important;
+  rotate: none !important;
+  scale: none !important;
+  translate: none !important;
+  transition-property: color, background-color, border-color, box-shadow, filter !important;
+}
+
+.app-shell .titlebar .toolbar > .toolbar-button:hover:not(:disabled):not(.button-bubble),
+.app-shell .titlebar .toolbar > .toolbar-button:active:not(:disabled):not(.button-bubble),
+.app-shell .titlebar .toolbar > .toolbar-button:focus-visible:not(.button-bubble),
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close):hover:not(:disabled):not(.button-bubble),
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close):active:not(:disabled):not(.button-bubble),
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close):focus-visible:not(.button-bubble) {
+  transform: none !important;
+}
+
+.app-shell.effects-on .titlebar .toolbar > .toolbar-button.pointer-glass-active:hover:not(:disabled):not(:active):not(.button-bubble),
+.installer-shell.effects-on .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close).pointer-glass-active:hover:not(:disabled):not(:active):not(.button-bubble) {
+  transform-origin: center center !important;
+}
+
+.app-shell .titlebar .toolbar > .toolbar-button,
+.app-shell .titlebar .toolbar > .toolbar-button:hover:not(:disabled),
+.app-shell .titlebar .toolbar > .toolbar-button.toolbar-active,
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close),
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close):hover:not(:disabled),
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button).toolbar-active {
+  color: var(--toolbar-icon-ink) !important;
+}
+
+.app-shell .titlebar .toolbar > .toolbar-button > svg,
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close) > svg {
+  display: block !important;
+  flex: 0 0 16px !important;
+  width: 16px !important;
+  min-width: 16px !important;
+  height: 16px !important;
+  min-height: 16px !important;
+  color: var(--toolbar-icon-ink) !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+.app-shell .titlebar .toolbar > .toolbar-button > svg :is(path, line, polyline, polygon, circle, rect),
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close) > svg :is(path, line, polyline, polygon, circle, rect) {
+  stroke: currentColor !important;
+  stroke-width: 1.8px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.app-shell .titlebar .toolbar > .toolbar-button.button-bubble,
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close).button-bubble {
+  animation: header-control-bubble var(--bubble-duration, .42s) cubic-bezier(.2,.82,.24,1) both !important;
+}
+@keyframes header-control-bubble {
+  0% { transform: scale(.94); filter: brightness(1); box-shadow: 0 0 0 transparent; }
+  28% { transform: scale(1.055); filter: brightness(1.1); box-shadow: 0 0 0 2px color-mix(in srgb, var(--violet) 24%, transparent), 0 8px 20px color-mix(in srgb, var(--violet) 24%, transparent); }
+  56% { transform: scale(.98); filter: brightness(1.04); box-shadow: 0 0 0 1px color-mix(in srgb, var(--violet) 13%, transparent), 0 5px 13px color-mix(in srgb, var(--violet) 14%, transparent); }
+  100% { transform: scale(1); filter: brightness(1); box-shadow: none; }
+}
+
+/* Tooltips and glass reflections cannot share ::after: tooltip bubbles have a
+   92px minimum width. Keep the hint pseudo intact and layer a small reflection
+   in the button background so it stays clipped to its own rounded rectangle. */
+.app-shell.effects-on.theme-light .titlebar .toolbar > .toolbar-button.pointer-glass-active,
+.installer-shell.effects-on.theme-light .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close).pointer-glass-active {
+  background-image: radial-gradient(ellipse 72px 48px at var(--glass-x, 50%) var(--glass-y, 50%), rgba(118,74,172,.2), rgba(255,255,255,.1) 38%, transparent 78%) !important;
+}
+.app-shell.effects-on.theme-dark .titlebar .toolbar > .toolbar-button.pointer-glass-active,
+.installer-shell.effects-on.theme-dark .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close).pointer-glass-active {
+  background-image: radial-gradient(ellipse 72px 48px at var(--glass-x, 50%) var(--glass-y, 50%), rgba(218,169,255,.22), rgba(255,255,255,.08) 38%, transparent 78%) !important;
+}
+
+/* Bring back the soft bubble response without changing the button silhouette.
+   Hover uses a small spring lift; press uses a contained, uniform pulse. */
+.app-shell.effects-on button:not(:disabled),
+.installer-shell.effects-on button:not(:disabled) {
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), filter .18s ease, box-shadow .18s ease !important;
+  transform-origin: center center;
+}
+.app-shell.effects-on button:hover:not(:disabled):not(.button-bubble),
+.installer-shell.effects-on button:hover:not(:disabled):not(.button-bubble) {
+  transform: translateY(-1px) scale(1.025) !important;
+  filter: brightness(1.045) saturate(1.035) !important;
+  transition: transform .34s cubic-bezier(.2,1.28,.38,1), filter .18s ease, box-shadow .18s ease !important;
+}
+.app-shell.effects-on .titlebar .toolbar > .toolbar-button:hover:not(:disabled):not(.button-bubble),
+.installer-shell.effects-on .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close):hover:not(:disabled):not(.button-bubble) {
+  transform: translateY(-1px) scale(1.025) !important;
+}
+.app-shell.effects-on button.button-bubble,
+.installer-shell.effects-on button.button-bubble,
+.tray-menu-shell.effects-on button.button-bubble,
+.app-shell.effects-off button.button-bubble,
+.installer-shell.effects-off button.button-bubble,
+.app-shell.effects-off .effects-toggle.button-bubble,
+.installer-shell.effects-off .installer-effects-toggle.button-bubble {
+  animation: button-bubble-contained var(--bubble-duration, .42s) cubic-bezier(.2,.82,.24,1) both !important;
+  border-radius: var(--bubble-radius, 12px) !important;
+  transform-origin: center center !important;
+  will-change: transform, filter, box-shadow;
+}
+@keyframes button-bubble-contained {
+  0% { transform: scale(.96); filter: brightness(.99); box-shadow: inset 0 1px rgba(255,255,255,.08); }
+  28% { transform: scale(1.045); filter: brightness(1.08) saturate(1.04); box-shadow: inset 0 1px rgba(255,255,255,.3), inset 0 0 0 1px rgba(255,255,255,.12); }
+  54% { transform: scale(.985); filter: brightness(1.03); box-shadow: inset 0 1px rgba(255,255,255,.16); }
+  78% { transform: scale(1.012); filter: brightness(1.01); }
+  100% { transform: scale(1); filter: brightness(1); box-shadow: none; }
+}
+.app-shell .toolbar-button.theme-toggle,
+.app-shell .toolbar-button.theme-toggle.toolbar-active {
+  color: var(--toolbar-icon-ink) !important;
+  background: rgba(255,255,255,.055) !important;
+  border-color: var(--line) !important;
+}
+.app-shell.theme-light .toolbar-button.theme-toggle,
+.app-shell.theme-light .toolbar-button.theme-toggle.toolbar-active {
+  background: rgba(255,255,255,.48) !important;
+}
+.app-shell .toolbar-button.theme-toggle:hover:not(:disabled):not(.button-bubble) {
+  color: var(--toolbar-icon-ink) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell.effects-on button,
+  .installer-shell.effects-on button,
+  .app-shell.effects-off button.button-bubble,
+  .installer-shell.effects-off button.button-bubble {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Keep behavior options separated by quiet dividers; an enclosing panel made
+   the whole group look like a single square slab. */
+.app-shell .modal-settings .settings-row-group {
+  position: relative;
+  overflow: visible;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+.app-shell .modal-settings .settings-row-group > .setting-row {
+  position: relative;
+  min-height: 60px !important;
+  padding-inline: 11px !important;
+  border: 0 !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 78%, transparent) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+.app-shell .modal-settings .settings-row-group > .setting-row:last-child {
+  border-bottom: 0 !important;
+}
+.app-shell .modal-settings .settings-row-group > .setting-row:hover {
+  background: color-mix(in srgb, var(--violet) 8%, transparent) !important;
+}
+
+/* Replace the leftover mint/amber backup palette with the current violet
+   identity and neutral, readable copy in both themes. */
+.app-shell.theme-dark .modal-backup .modal-kicker {
+  color: #d4c3df !important;
+}
+.app-shell.theme-dark .modal-backup .modal-kicker svg {
+  color: #d4a7f4 !important;
+}
+.app-shell.theme-dark .modal-backup .backup-preview {
+  border-color: rgba(206, 164, 239, .2) !important;
+  background: linear-gradient(115deg, rgba(117, 73, 153, .2), rgba(43, 27, 59, .38)) !important;
+}
+.app-shell.theme-dark .modal-backup .backup-orb {
+  color: #e4c6fb !important;
+  border-color: rgba(207, 163, 242, .28) !important;
+  background: rgba(137, 83, 185, .2) !important;
+}
+.app-shell.theme-dark .modal-backup .backup-preview b {
+  color: #f5edf9 !important;
+}
+.app-shell.theme-dark .modal-backup .backup-preview p,
+.app-shell.theme-dark .modal-backup .backup-format,
+.app-shell.theme-dark .modal-backup .field-optional,
+.app-shell.theme-dark .modal-backup .password-field > small,
+.app-shell.theme-dark .modal-backup .backup-warning {
+  color: #c8b9d1 !important;
+}
+.app-shell.theme-dark .modal-backup .password-wrap input {
+  color: #f5edf9 !important;
+}
+.app-shell.theme-dark .modal-backup .password-wrap input::placeholder {
+  color: #ad9bb8 !important;
+  opacity: 1 !important;
+}
+.app-shell.theme-dark .modal-backup .password-wrap button {
+  color: #c8b4d3 !important;
+}
+.app-shell.theme-dark .modal-backup .backup-warning svg {
+  color: #d4a7f4 !important;
+}
+
+.app-shell.theme-light .modal-backup .modal-kicker {
+  color: #392d46 !important;
+}
+.app-shell.theme-light .modal-backup .modal-kicker svg {
+  color: #7138c2 !important;
+}
+.app-shell.theme-light .modal-backup .backup-preview {
+  border-color: rgba(91, 56, 128, .2) !important;
+  background: linear-gradient(115deg, rgba(113, 56, 194, .08), #fff 72%) !important;
+}
+.app-shell.theme-light .modal-backup .backup-orb {
+  color: #6533a5 !important;
+  border-color: rgba(91, 56, 128, .24) !important;
+  background: rgba(113, 56, 194, .08) !important;
+}
+.app-shell.theme-light .modal-backup .backup-preview b {
+  color: #30233d !important;
+}
+.app-shell.theme-light .modal-backup .backup-preview p,
+.app-shell.theme-light .modal-backup .backup-format,
+.app-shell.theme-light .modal-backup .field-optional,
+.app-shell.theme-light .modal-backup .password-field > small,
+.app-shell.theme-light .modal-backup .backup-warning {
+  color: #5b5066 !important;
+}
+.app-shell.theme-light .modal-backup .password-wrap input {
+  color: #30233d !important;
+}
+.app-shell.theme-light .modal-backup .password-wrap input::placeholder {
+  color: #6b6076 !important;
+  opacity: 1 !important;
+}
+.app-shell.theme-light .modal-backup .password-wrap button {
+  color: #655574 !important;
+}
+.app-shell.theme-light .modal-backup .backup-warning svg {
+  color: #7138c2 !important;
+}
+
+.app-shell .modal-backup .backup-preview b {
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+}
+.app-shell .modal-backup .backup-preview p {
+  font-size: 11.5px !important;
+  line-height: 1.5 !important;
+}
+.app-shell .modal-backup .backup-format,
+.app-shell .modal-backup .field-optional,
+.app-shell .modal-backup .password-field > small {
+  font-size: 10px !important;
+  line-height: 1.45 !important;
+}
+.app-shell .modal-backup .backup-warning {
+  align-items: flex-start !important;
+  color: #d9cfe2 !important;
+  font-size: 11.5px !important;
+  line-height: 1.5 !important;
+}
+.app-shell .modal-backup .backup-warning svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+.app-shell.theme-dark .modal-backup :is(.backup-preview p, .backup-format, .field-optional, .password-field > small) {
+  color: #d0c4da !important;
+}
+.app-shell.theme-light .modal-backup :is(.backup-preview p, .backup-format, .field-optional, .password-field > small) {
+  color: #554b60 !important;
+}
+.app-shell .modal-backup .backup-format,
+.app-shell .modal-backup .password-field > small {
+  font-size: 10.5px !important;
+  line-height: 1.5 !important;
+}
+.app-shell.theme-light .modal-backup .backup-warning { color: #51465d !important; }
+.app-shell.theme-light .modal-backup .backup-warning svg { color: #7138c2 !important; }
+
+/* The remove control remains quiet in shape, but its idle icon now has enough
+   contrast to read as a destructive action without hovering. */
+.app-shell.theme-dark .remove-account,
+.app-shell.theme-dark .remove-account svg {
+  color: #ff536b !important;
+  stroke: currentColor !important;
+}
+.app-shell.theme-dark .remove-account {
+  border-color: rgba(255, 83, 107, .3) !important;
+  background: rgba(255, 83, 107, .15) !important;
+  filter: drop-shadow(0 0 5px rgba(255, 83, 107, .14));
+}
+.app-shell.theme-dark .remove-account:hover:not(:disabled),
+.app-shell.theme-dark .remove-account:focus-visible {
+  color: #ff8b9c !important;
+  border-color: rgba(255, 139, 156, .48) !important;
+  background: rgba(255, 83, 107, .24) !important;
+}
+.app-shell.theme-light .remove-account,
+.app-shell.theme-light .remove-account svg {
+  color: #ce2f4b !important;
+  stroke: currentColor !important;
+}
+.app-shell.theme-light .remove-account {
+  border-color: rgba(206, 47, 75, .24) !important;
+  background: rgba(206, 47, 75, .09) !important;
+}
+.app-shell.theme-light .remove-account:hover:not(:disabled),
+.app-shell.theme-light .remove-account:focus-visible {
+  color: #a81e39 !important;
+  border-color: rgba(168, 30, 57, .4) !important;
+  background: rgba(206, 47, 75, .15) !important;
+}
+
+/* Keep every account card on a shared grid height and action baseline,
+   including rows with an extra status message. */
+.app-shell .account-list {
+  align-content: start !important;
+  align-items: stretch !important;
+  justify-items: stretch !important;
+  grid-auto-rows: 1fr !important;
+}
+.app-shell .account-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-self: stretch !important;
+  box-sizing: border-box !important;
+  height: 100% !important;
+  min-width: 0 !important;
+}
+.app-shell .account-card-top {
+  align-items: flex-start !important;
+}
+.app-shell .account-identity {
+  align-items: flex-start !important;
+}
+.app-shell .account-card-top .quota-badge {
+  align-self: flex-start !important;
+}
+.app-shell .account-list.account-columns-2 .account-card-top,
+.app-shell .account-list.account-columns-3 .account-card-top {
+  min-height: 58px !important;
+  box-sizing: border-box !important;
+}
+.app-shell .account-list.account-columns-2 .current-tag,
+.app-shell .account-list.account-columns-3 .current-tag {
+  display: none !important;
+}
+.app-shell .account-list.account-columns-2 .account-name small.account-meta,
+.app-shell .account-list.account-columns-3 .account-name small.account-meta {
+  min-height: 28px !important;
+  box-sizing: border-box !important;
+}
+.app-shell .account-card-bottom {
+  margin-top: auto !important;
+}
+
+/* Preserve three cards per row in a compact window without shrinking the
+   account details below a readable size. The wider badge keeps its label on
+   whole words; the identity column can wrap email and plan text naturally. */
+@container accounts (min-width: 620px) and (max-width: 899px) {
+  .app-shell .account-list.account-columns-3 .account-card-top {
+    grid-template-columns: minmax(0, 1fr) 68px !important;
+    column-gap: 7px !important;
+  }
+  .app-shell .account-list.account-columns-3 .quota-badge {
+    width: 68px !important;
+    min-width: 68px !important;
+    max-width: 68px !important;
+    flex-basis: 68px !important;
+  }
+  .app-shell .account-list.account-columns-3 .quota-badge-label {
+    font-size: 7.5px !important;
+    line-height: 1.12 !important;
+  }
+  .app-shell .account-list.account-columns-3 .account-name b {
+    font-size: 11px !important;
+    line-height: 1.22 !important;
+  }
+  .app-shell .account-list.account-columns-3 .account-name small.account-meta {
+    font-size: 9px !important;
+    line-height: 1.25 !important;
+  }
+  .app-shell .account-list.account-columns-3 .account-name .account-plan {
+    font-size: 8.5px !important;
+  }
+  .app-shell .account-list.account-columns-3 .account-name .account-updated {
+    font-size: 8px !important;
+  }
+  .app-shell .account-list.account-columns-3 .current-tag {
+    font-size: 7px !important;
+  }
+  .app-shell .account-list.account-columns-3 .quota-line-label {
+    font-size: 9px !important;
+  }
+  .app-shell .account-list.account-columns-3 .quota-line-reset {
+    font-size: 8.5px !important;
+  }
+  .app-shell .account-list.account-columns-3 .account-status-note b {
+    font-size: 9px !important;
+  }
+  .app-shell .account-list.account-columns-3 .account-status-note small {
+    font-size: 8.5px !important;
+  }
+  .app-shell .account-list.account-columns-3 .account-status-note button {
+    font-size: 8.5px !important;
+  }
+  .app-shell .account-list.account-columns-3 .switch-button {
+    font-size: 8.75px !important;
+  }
+}
+
+/* Keep the branded window header intact at the minimum supported width.
+   Compact the toolbar before allowing the product name to wrap or shrink. */
+@media (min-width: 681px) and (max-width: 900px) {
+  .app-shell .titlebar {
+    padding-inline: 12px !important;
+  }
+  .app-shell .brand {
+    flex: 0 0 auto !important;
+    gap: 9px !important;
+  }
+  .app-shell .brand-mark {
+    flex: 0 0 38px !important;
+  }
+  .app-shell .brand-copy {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+  }
+  .app-shell .brand-copy b {
+    white-space: nowrap !important;
+  }
+  .app-shell .brand-copy small {
+    display: none !important;
+  }
+  .app-shell .titlebar-right {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    justify-content: flex-end !important;
+    gap: 4px !important;
+  }
+  .app-shell .titlebar-right .toolbar {
+    gap: 3px !important;
+    padding-right: 6px !important;
+  }
+  .app-shell .titlebar .toolbar > .toolbar-button {
+    flex: 0 0 31px !important;
+    width: 31px !important;
+    min-width: 31px !important;
+    height: 31px !important;
+  }
+  .app-shell .version-chip {
+    padding: 6px 7px !important;
+    margin-inline: 0 1px !important;
+    gap: 5px !important;
+    font-size: 8px !important;
+    letter-spacing: .035em !important;
+    white-space: nowrap !important;
+  }
+  .app-shell .titlebar-right > .window-control {
+    flex: 0 0 28px !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .app-shell .titlebar-right > .window-control:nth-last-child(3) {
+    margin-left: 2px !important;
+  }
+}
+
+/* Repair the squared hover slab on behavior rows.  Each option owns its
+   rounded hover surface, while the group remains visually open. */
+.app-shell .modal-settings .settings-row-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+.app-shell .modal-settings .settings-row-group > .setting-row {
+  box-sizing: border-box !important;
+  border: 1px solid transparent !important;
+  border-radius: 14px !important;
+  background: transparent !important;
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease !important;
+}
+.app-shell.theme-dark .modal-settings .settings-row-group > .setting-row:hover,
+.app-shell.theme-dark .modal-settings .settings-row-group > .setting-row:focus-visible {
+  border-color: rgba(202, 169, 230, .34) !important;
+  background: linear-gradient(110deg, rgba(167, 119, 207, .17), rgba(167, 119, 207, .09)) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .07), 0 4px 14px rgba(9, 4, 16, .12) !important;
+}
+.app-shell.theme-light .modal-settings .settings-row-group > .setting-row:hover,
+.app-shell.theme-light .modal-settings .settings-row-group > .setting-row:focus-visible {
+  border-color: rgba(92, 55, 133, .31) !important;
+  background: linear-gradient(110deg, rgba(113, 56, 232, .09), rgba(113, 56, 232, .045)) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .88), 0 4px 14px rgba(43, 29, 58, .065) !important;
+}
+
+/* Give the frequency and Codex connection panels an edge that stays visible
+   against the modal surface in either theme. */
+.app-shell.theme-dark .modal-settings .settings-utility-grid :is(.interval-control, .integration-box) {
+  border: 1px solid rgba(197, 160, 225, .43) !important;
+  border-radius: 16px !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .085), 0 8px 22px rgba(7, 3, 13, .12) !important;
+}
+.app-shell.theme-light .modal-settings .settings-utility-grid :is(.interval-control, .integration-box) {
+  border: 1px solid rgba(86, 53, 121, .35) !important;
+  border-radius: 16px !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .94), 0 6px 18px rgba(43, 29, 58, .075) !important;
+}
+
+/* Replace the legacy mint headings and reset links with the current violet
+   palette and calmer, readable supporting colors. */
+.app-shell.theme-dark :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker,
+.app-shell.theme-dark .modal-codex .prompt-library-head .modal-kicker {
+  color: #e0d3e9 !important;
+}
+.app-shell.theme-dark :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker svg,
+.app-shell.theme-dark .modal-codex .prompt-library-head .modal-kicker svg {
+  color: #c08be8 !important;
+}
+.app-shell.theme-light :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker,
+.app-shell.theme-light .modal-codex .prompt-library-head .modal-kicker {
+  color: #493558 !important;
+}
+.app-shell.theme-light :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker svg,
+.app-shell.theme-light .modal-codex .prompt-library-head .modal-kicker svg {
+  color: #6d3fc2 !important;
+}
+.app-shell.theme-dark .modal-settings .reset-link-row button:first-child { color: #cbb4e2 !important; }
+.app-shell.theme-light .modal-settings .reset-link-row button:first-child { color: #563575 !important; }
+.app-shell.theme-dark .modal-settings .reset-link-row button:first-child { color: #a7ddb9 !important; }
+.app-shell.theme-light .modal-settings .reset-link-row button:first-child { color: #216f40 !important; }
+.app-shell.theme-dark .modal-settings .reset-link-row button:last-child { color: #e6a0af !important; }
+.app-shell.theme-light .modal-settings .reset-link-row button:last-child { color: #98374f !important; }
+
+
+
+/* Final fixes for the reported settings controls. The two utility cards are
+   the only surfaces in this row; remove the faint separator behind them. */
+.app-shell .modal-settings .settings-stack {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.app-shell .modal-settings .threshold-setting {
+  border-bottom: 0 !important;
+}
+.app-shell .modal-settings .settings-utility-grid,
+.app-shell .modal-settings .settings-utility-grid::before,
+.app-shell .modal-settings .settings-utility-grid::after {
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.app-shell .modal-settings .settings-utility-grid::before,
+.app-shell .modal-settings .settings-utility-grid::after {
+  content: none !important;
+  display: none !important;
+}
+.app-shell .modal-settings .settings-utility-grid {
+  align-items: stretch !important;
+  gap: 14px !important;
+}
+.app-shell .modal-settings .settings-utility-grid .interval-control,
+.app-shell .modal-settings .settings-utility-grid .integration-box {
+  box-sizing: border-box !important;
+  min-height: 190px !important;
+  height: 100% !important;
+}
+.app-shell .modal-settings .settings-utility-grid .interval-control {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding: 14px !important;
+}
+.app-shell .modal-settings .settings-utility-grid .interval-control-head {
+  min-height: 26px !important;
+  margin-bottom: 10px !important;
+}
+.app-shell .modal-settings .settings-utility-grid .interval-wheel-row {
+  flex: 1 1 auto !important;
+  min-height: 82px !important;
+  max-width: 100% !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+.app-shell .modal-settings .settings-utility-grid .interval-wheel-column {
+  box-sizing: border-box !important;
+  height: 82px !important;
+  min-height: 82px !important;
+  padding-block: 2px !important;
+  grid-template-rows: 16px minmax(0, 42px) 16px !important;
+}
+.app-shell .modal-settings .settings-utility-grid .wheel-neighbor {
+  min-height: 16px !important;
+  padding: 0 4px !important;
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+}
+.app-shell .modal-settings .settings-utility-grid .wheel-current {
+  min-height: 42px !important;
+  grid-template-rows: 27px 12px !important;
+  align-content: center !important;
+  gap: 0 !important;
+}
+.app-shell .modal-settings .settings-utility-grid .wheel-current input {
+  box-sizing: border-box !important;
+  height: 27px !important;
+  line-height: 27px !important;
+  font-size: 22px !important;
+}
+.app-shell .modal-settings .settings-utility-grid .wheel-current span {
+  display: block !important;
+  min-height: 12px !important;
+  font-size: 9px !important;
+  line-height: 12px !important;
+}
+.app-shell .modal-settings .settings-utility-grid .integration-box {
+  padding: 16px !important;
+}
+.app-shell.theme-dark .modal-settings .setting-policy-badge {
+  color: #e3cef1 !important;
+  border-color: rgba(196, 152, 224, .38) !important;
+  background: rgba(151, 99, 184, .16) !important;
+}
+.app-shell.theme-light .modal-settings .setting-policy-badge {
+  color: #52396c !important;
+  border-color: rgba(95, 64, 124, .26) !important;
+  background: rgba(113, 56, 232, .07) !important;
+}
+.app-shell.theme-dark .modal-sheet :is(input, textarea)::placeholder {
+  color: #c9bdd4 !important;
+  opacity: 1 !important;
+}
+.app-shell.theme-dark .modal-sheet :is(input, textarea)::-webkit-input-placeholder {
+  color: #c9bdd4 !important;
+  opacity: 1 !important;
+}
+
+/* Inset the prompt title and add action from the library frame in both themes. */
+.app-shell .modal-codex .prompt-library,
+.app-shell.theme-light .modal-codex .prompt-library {
+  box-sizing: border-box !important;
+  padding: 16px 18px !important;
+}
+.app-shell .modal-codex .prompt-library-head {
+  gap: 12px !important;
+  padding-inline: 3px !important;
+}
+.app-shell .modal-codex .prompt-library-head .small-icon-button {
+  margin-inline: 2px !important;
+}
+
+/* Match destructive controls to the disconnected status red in dark mode. */
+.app-shell.theme-dark .remove-account,
+.app-shell.theme-dark .remove-account svg {
+  color: #ffb8c3 !important;
+  stroke: currentColor !important;
+}
+.app-shell.theme-dark .remove-account {
+  border-color: rgba(255, 111, 137, .35) !important;
+  background: rgba(164, 38, 69, .17) !important;
+  filter: none !important;
+}
+.app-shell.theme-dark .remove-account:hover:not(:disabled),
+.app-shell.theme-dark .remove-account:focus-visible {
+  color: #ffd0d7 !important;
+  border-color: rgba(255, 151, 169, .48) !important;
+  background: rgba(164, 38, 69, .25) !important;
+}
+@media (max-width: 560px) {
+  .app-shell .modal-settings .settings-utility-grid .interval-control,
+  .app-shell .modal-settings .settings-utility-grid .integration-box {
+    min-height: 190px !important;
+    height: auto !important;
+  }
+  .app-shell .modal-settings .settings-utility-grid .integration-box {
+    align-content: center !important;
+  }
+}
+.app-shell .modal-settings .reset-link-row button {
+  min-height: 30px !important;
+  padding: 4px 8px !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  line-height: 1.25 !important;
+  transition: color .18s ease, background-color .18s ease, border-color .18s ease, transform .18s ease !important;
+}
+.app-shell.theme-dark .modal-settings .reset-link-row button:first-child:hover:not(:disabled) {
+  color: #c0efd0 !important;
+  border-color: rgba(139, 202, 158, .23) !important;
+  background: rgba(87, 158, 110, .13) !important;
+}
+.app-shell.theme-light .modal-settings .reset-link-row button:first-child:hover:not(:disabled) {
+  color: #155a32 !important;
+  border-color: rgba(33, 111, 64, .2) !important;
+  background: rgba(33, 111, 64, .075) !important;
+}
+.app-shell.theme-dark .modal-settings .reset-link-row button:last-child:hover:not(:disabled) {
+  color: #ffc0cc !important;
+  border-color: rgba(230, 160, 175, .22) !important;
+  background: rgba(172, 78, 99, .14) !important;
+}
+.app-shell.theme-light .modal-settings .reset-link-row button:last-child:hover:not(:disabled) {
+  color: #7d253a !important;
+  border-color: rgba(152, 55, 79, .2) !important;
+  background: rgba(152, 55, 79, .07) !important;
+}
+.app-shell .modal-settings .reset-link-row button:focus-visible {
+  outline: 2px solid currentColor !important;
+  outline-offset: 2px !important;
+}
+.app-shell.theme-dark .modal-codex .settings-tip svg.lucide-shield,
+.app-shell.theme-light .modal-codex .settings-tip svg.lucide-shield {
+  color: #2eb968 !important;
+  fill: #46c878 !important;
+  stroke: #167b46 !important;
+  stroke-width: 1.7 !important;
+}
+.app-shell .modal-settings .reset-link-row button {
+  min-height: 28px !important;
+  font-size: 10px !important;
+  line-height: 1.35 !important;
+  font-weight: 600 !important;
+  text-decoration-color: currentColor !important;
+  text-underline-offset: 3px !important;
+  transition: color .18s ease, background-color .18s ease, text-decoration-color .18s ease !important;
+}
+.app-shell.theme-dark .modal-settings .reset-link-row button:first-child:hover:not(:disabled) { color: #c0efd0 !important; }
+.app-shell.theme-light .modal-settings .reset-link-row button:first-child:hover:not(:disabled) { color: #155a32 !important; }
+.app-shell.theme-dark .modal-settings .reset-link-row button:last-child:hover:not(:disabled) { color: #ffc0cc !important; }
+.app-shell.theme-light .modal-settings .reset-link-row button:last-child:hover:not(:disabled) { color: #7d253a !important; }
+
+/* Remove the first-version mint and amber from settings helper copy.  Keep the
+   shield green by design, with its text and surface in the app's violet scale. */
+.app-shell.theme-dark :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker,
+.app-shell.theme-dark .modal-codex .prompt-library-head .modal-kicker {
+  color: #dfd1eb !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+.app-shell.theme-dark :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker svg,
+.app-shell.theme-dark .modal-codex .prompt-library-head .modal-kicker svg {
+  color: #c08be8 !important;
+}
+.app-shell.theme-light :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker,
+.app-shell.theme-light .modal-codex .prompt-library-head .modal-kicker {
+  color: #4f376b !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+.app-shell.theme-light :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker svg,
+.app-shell.theme-light .modal-codex .prompt-library-head .modal-kicker svg {
+  color: #6d3fc2 !important;
+}
+.app-shell.theme-dark .modal-settings .settings-tip {
+  color: #d3c6df !important;
+  border-color: rgba(174, 137, 207, .25) !important;
+  background: rgba(126, 78, 164, .09) !important;
+}
+.app-shell.theme-light .modal-settings .settings-tip {
+  color: #51445e !important;
+  border-color: rgba(93, 59, 129, .22) !important;
+  background: rgba(113, 56, 232, .045) !important;
+}
+
+/* Use a rounded, solid inset for the empty prompt state so its frame is clear
+   without making the helper text feel crowded. */
+.app-shell .modal-codex .prompt-empty {
+  min-height: 78px !important;
+  padding: 16px 19px !important;
+  border-style: solid !important;
+  border-radius: 20px !important;
+}
+.app-shell.theme-dark .modal-codex .prompt-empty {
+  border-color: rgba(190, 151, 221, .35) !important;
+  background: rgba(143, 93, 187, .075) !important;
+}
+.app-shell.theme-light .modal-codex .prompt-empty {
+  border-color: rgba(93, 59, 129, .3) !important;
+  background: rgba(113, 56, 232, .04) !important;
+}
+
+/* The Codex empty prompt state needs comfortable inset space and a rounded
+   outline; its copy should never sit against the frame. */
+.app-shell .modal-codex .prompt-library {
+  border-radius: 18px !important;
+}
+.app-shell .modal-codex .prompt-empty {
+  box-sizing: border-box !important;
+  min-height: 72px !important;
+  padding: 15px 17px !important;
+  gap: 12px !important;
+  border-radius: 17px !important;
+  line-height: 1.5 !important;
+}
+.app-shell .modal-codex .prompt-empty > span {
+  min-width: 0 !important;
+  overflow-wrap: break-word !important;
+}
+.app-shell.theme-dark .modal-codex .prompt-empty {
+  color: #d6c9df !important;
+  border-color: rgba(190, 151, 221, .38) !important;
+  background: rgba(143, 93, 187, .09) !important;
+}
+.app-shell.theme-dark .modal-codex .prompt-empty svg,
+.app-shell.theme-dark .modal-codex .settings-tip svg {
+  color: #c08be8 !important;
+}
+.app-shell.theme-light .modal-codex .prompt-empty {
+  color: #4e405c !important;
+  border-color: rgba(93, 59, 129, .32) !important;
+  background: rgba(113, 56, 232, .045) !important;
+}
+.app-shell.theme-light .modal-codex .prompt-empty {
+  border-radius: 17px !important;
+}
+.app-shell.theme-light .modal-codex .prompt-empty svg,
+.app-shell.theme-light .modal-codex .settings-tip svg {
+  color: #6d3fc2 !important;
+}
+.app-shell.theme-dark .modal-codex .settings-tip {
+  color: #d2c5dc !important;
+  border-color: rgba(190, 151, 221, .25) !important;
+  background: rgba(143, 93, 187, .08) !important;
+}
+.app-shell.theme-light .modal-codex .settings-tip {
+  color: #554763 !important;
+  border-color: rgba(93, 59, 129, .21) !important;
+  background: rgba(113, 56, 232, .035) !important;
+}
+.app-shell.theme-dark .modal-codex .settings-tip svg,
+.app-shell.theme-dark .modal-codex .panel-footer > span svg {
+  color: #c08be8 !important;
+  fill: rgba(192, 139, 232, .2) !important;
+  stroke: currentColor !important;
+}
+.app-shell.theme-light .modal-codex .settings-tip svg,
+.app-shell.theme-light .modal-codex .panel-footer > span svg {
+  color: #6d3fc2 !important;
+  fill: rgba(109, 63, 194, .14) !important;
+  stroke: currentColor !important;
+}
+.app-shell.theme-dark .modal-settings .integration-box .text-button.danger-text {
+  color: #e0a2b0 !important;
+  border: 1px solid rgba(213, 144, 161, .28) !important;
+  border-radius: 9px !important;
+  background: rgba(213, 144, 161, .085) !important;
+}
+.app-shell.theme-light .modal-settings .integration-box .text-button.danger-text {
+  color: #873247 !important;
+  border: 1px solid rgba(135, 50, 71, .2) !important;
+  border-radius: 9px !important;
+  background: rgba(135, 50, 71, .055) !important;
+}
+.app-shell.theme-dark .modal-settings .integration-box .text-button.danger-text:hover:not(:disabled) {
+  color: #f1b7c2 !important;
+  background: rgba(213, 144, 161, .15) !important;
+}
+.app-shell.theme-light .modal-settings .integration-box .text-button.danger-text:hover:not(:disabled) {
+  color: #74263a !important;
+  background: rgba(135, 50, 71, .095) !important;
+}
+
+/* In two-card mode, keep the complete refresh status.  Let the value wrap at
+   word boundaries when a narrow card cannot hold it on one line. */
+.app-shell .account-list.account-columns-2 .quota-line-reset {
+  display: grid !important;
+  grid-template-columns: max-content minmax(0, 1fr) !important;
+  align-items: start !important;
+  column-gap: 5px !important;
+}
+.app-shell .account-list.account-columns-2 .quota-line-reset > span {
+  min-width: 0 !important;
+  white-space: nowrap !important;
+}
+.app-shell .account-list.account-columns-2 .quota-line-reset > b {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  overflow-wrap: break-word !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  text-align: right !important;
+  font-size: 9px !important;
+  line-height: 1.25 !important;
+  letter-spacing: -.015em !important;
+}
+
+/* Usage-limit labels were still using the old amber warning color.  Use a
+   restrained red with a matching soft surface so the status reads clearly. */
+.app-shell.theme-dark .account-status-note.status-tone-warning {
+  border-color: rgba(225, 111, 137, .32) !important;
+  background: rgba(170, 54, 81, .13) !important;
+}
+.app-shell.theme-dark .account-status-note.status-tone-warning .account-status-marker,
+.app-shell.theme-dark .account-status-note.status-tone-warning b {
+  color: #ef9aaa !important;
+  background-color: #e16f89 !important;
+}
+.app-shell.theme-dark .account-status-note.status-tone-warning .account-status-marker { box-shadow: 0 0 8px rgba(225, 111, 137, .55) !important; }
+.app-shell.theme-dark .account-status-note.status-tone-warning b { background-color: transparent !important; }
+.app-shell.theme-light .account-status-note.status-tone-warning {
+  border-color: rgba(152, 43, 65, .25) !important;
+  background: rgba(190, 58, 83, .07) !important;
+}
+.app-shell.theme-light .account-status-note.status-tone-warning .account-status-marker,
+.app-shell.theme-light .account-status-note.status-tone-warning b {
+  color: #982b41 !important;
+  background-color: #b33d55 !important;
+}
+.app-shell.theme-light .account-status-note.status-tone-warning .account-status-marker { box-shadow: 0 0 7px rgba(179, 61, 85, .38) !important; }
+.app-shell.theme-light .account-status-note.status-tone-warning b { background-color: transparent !important; }
+.app-shell.theme-dark .active-account-status.status-tone-warning { color: #ef9aaa !important; }
+.app-shell.theme-light .active-account-status.status-tone-warning { color: #982b41 !important; }
+.app-shell.theme-dark .quota-warning-note { color: #ef9aaa !important; }
+.app-shell.theme-light .quota-warning-note { color: #982b41 !important; }
+
+/* Last-in-cascade corrections for the older theme rules above. */
+.app-shell .modal-settings .settings-row-group > .setting-row {
+  box-sizing: border-box !important;
+  border: 1px solid transparent !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background-clip: padding-box !important;
+}
+.app-shell.theme-dark .modal-settings .settings-row-group > .setting-row:hover,
+.app-shell.theme-dark .modal-settings .settings-row-group > .setting-row:focus-visible {
+  border-color: rgba(202, 169, 230, .34) !important;
+  background: linear-gradient(110deg, rgba(167, 119, 207, .17), rgba(167, 119, 207, .09)) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .07), 0 4px 14px rgba(9, 4, 16, .12) !important;
+}
+.app-shell.theme-light .modal-settings .settings-row-group > .setting-row:hover,
+.app-shell.theme-light .modal-settings .settings-row-group > .setting-row:focus-visible {
+  border-color: rgba(92, 55, 133, .31) !important;
+  background: linear-gradient(110deg, rgba(113, 56, 232, .09), rgba(113, 56, 232, .045)) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .88), 0 4px 14px rgba(43, 29, 58, .065) !important;
+}
+.app-shell.theme-dark .modal-settings .settings-utility-grid :is(.interval-control, .integration-box) {
+  border-color: rgba(197, 160, 225, .43) !important;
+  border-radius: 16px !important;
+}
+.app-shell.theme-light .modal-settings .settings-utility-grid :is(.interval-control, .integration-box) {
+  border-color: rgba(86, 53, 121, .35) !important;
+  border-radius: 16px !important;
+}
+.app-shell.theme-dark .modal-settings .settings-tip {
+  color: #d3c6df !important;
+  border-color: rgba(174, 137, 207, .25) !important;
+  background: rgba(126, 78, 164, .09) !important;
+}
+.app-shell.theme-light .modal-settings .settings-tip {
+  color: #51445e !important;
+  border-color: rgba(93, 59, 129, .22) !important;
+  background: rgba(113, 56, 232, .045) !important;
+}
+.app-shell.theme-dark :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker,
+.app-shell.theme-dark .modal-codex .prompt-library-head .modal-kicker {
+  color: #dfd1eb !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+.app-shell.theme-dark :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker svg,
+.app-shell.theme-dark .modal-codex .prompt-library-head .modal-kicker svg { color: #c08be8 !important; }
+.app-shell.theme-light :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker,
+.app-shell.theme-light .modal-codex .prompt-library-head .modal-kicker {
+  color: #4f376b !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+.app-shell.theme-light :is(.modal-settings, .modal-codex) .panel-content > .modal-kicker svg,
+.app-shell.theme-light .modal-codex .prompt-library-head .modal-kicker svg { color: #6d3fc2 !important; }
+.app-shell.theme-dark .modal-codex .prompt-empty,
+.app-shell.theme-light .modal-codex .prompt-empty {
+  min-height: 78px !important;
+  padding: 16px 19px !important;
+  border-style: solid !important;
+  border-radius: 20px !important;
+}
+.app-shell.theme-dark .modal-codex .prompt-empty {
+  border-color: rgba(190, 151, 221, .35) !important;
+  background: rgba(143, 93, 187, .075) !important;
+}
+.app-shell.theme-light .modal-codex .prompt-empty {
+  border-color: rgba(93, 59, 129, .3) !important;
+  background: rgba(113, 56, 232, .04) !important;
+}
+.app-shell.theme-dark .modal-settings .reset-link-row button:first-child { color: #a7ddb9 !important; }
+.app-shell.theme-light .modal-settings .reset-link-row button:first-child { color: #216f40 !important; }
+.app-shell.theme-dark .modal-settings .reset-link-row button:last-child { color: #e6a0af !important; }
+.app-shell.theme-light .modal-settings .reset-link-row button:last-child { color: #98374f !important; }
+
+/* Keep the scrollbar inside rounded surfaces in WebView2. The native themed
+   scrollbar buttons caused tiny arrows to stick beyond the top and bottom
+   corners, so use Blink's custom scrollbar and inset its thumb at both ends. */
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column) {
+  scrollbar-color: auto !important;
+  scrollbar-width: auto !important;
+}
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar-track {
+  background: transparent !important;
+  border-radius: 999px !important;
+  margin-block: 10px !important;
+}
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar-track:horizontal {
+  margin-inline: 10px !important;
+}
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar-thumb {
+  border: 2px solid transparent !important;
+  border-block: 9px solid transparent !important;
+  border-radius: 999px !important;
+  background: #fff !important;
+  background-clip: content-box !important;
+}
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+/* Align the two outer wheel values symmetrically around the editable value. */
+.app-shell .modal-settings .settings-utility-grid .interval-wheel-column {
+  padding-block: 0 !important;
+  grid-template-rows: minmax(0, 1fr) 42px minmax(0, 1fr) !important;
+}
+.app-shell .modal-settings .settings-utility-grid .wheel-neighbor {
+  align-self: stretch !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin-block: 0 !important;
+  padding-block: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  line-height: 1 !important;
+}
+.app-shell .modal-settings .settings-utility-grid .wheel-current:focus-within {
+  border-radius: 11px !important;
+  outline: 2px solid color-mix(in srgb, var(--violet) 54%, transparent) !important;
+  outline-offset: -3px !important;
+}
+/* WebView2 paints input text selection as a hard rectangle. Keep the rounded
+   focus surface as the editing indicator instead of a square glyph highlight. */
+.app-shell .modal-settings .settings-utility-grid .wheel-current input::selection,
+.app-shell .modal-settings .settings-utility-grid .wheel-current input::-moz-selection {
+  color: inherit !important;
+  background: transparent !important;
+}
+.app-shell .modal-sheet .field-label :is(input, textarea, select):focus-visible,
+.app-shell .modal-sheet .interval-setting input:focus-visible {
+  border-radius: 11px !important;
+  outline: 2px solid color-mix(in srgb, var(--violet) 58%, transparent) !important;
+  outline-offset: 1px !important;
+}
+
+/* The prompt library should use the same inset surface as its neighboring
+   integration/settings blocks, in both themes. */
+.app-shell .modal-codex .prompt-library {
+  box-sizing: border-box !important;
+  border: 1px solid rgba(190, 215, 199, .12) !important;
+  border-radius: 14px !important;
+  background: rgba(197, 224, 207, .035) !important;
+  box-shadow: none !important;
+}
+.app-shell.theme-light .modal-codex .prompt-library {
+  border-color: rgba(113, 56, 232, .2) !important;
+  background: linear-gradient(115deg, rgba(113, 56, 232, .07), rgba(255, 255, 255, .78)) !important;
+}
+
+/* Give the long quota caption its own centered line above the percentage. */
+.app-shell .account-list.account-columns-3 .quota-badge {
+  min-height: 40px !important;
+  padding: 4px !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  white-space: normal !important;
+}
+.app-shell .account-list.account-columns-3 .quota-badge-label {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 auto !important;
+  font-size: 7.2px !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  hyphens: none !important;
+}
+.app-shell .account-list.account-columns-3 .quota-badge > b {
+  display: block !important;
+  flex: 0 0 auto !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+/* The connect action is an icon-only control; use a round silhouette and a
+   matching rounded keyboard-focus ring in both color schemes. */
+.app-shell .connect-callout > button {
+  border-radius: 50% !important;
+}
+.app-shell .connect-callout > button:focus-visible {
+  border-radius: 50% !important;
+  outline: 2px solid color-mix(in srgb, var(--violet) 62%, transparent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Tray actions share one neutral treatment. Open App has no special outline,
+   and Exit no longer carries a red-on-red destructive block. */
+.tray-menu-shell .tray-menu-primary {
+  border-color: transparent !important;
+  outline: none !important;
+}
+.tray-menu-shell.theme-dark.effects-on .tray-menu-primary:hover:not(:disabled) {
+  border-color: rgba(255, 191, 243, .27) !important;
+}
+.tray-menu-shell.theme-light.effects-on .tray-menu-primary:hover:not(:disabled) {
+  border-color: rgba(113, 56, 232, .22) !important;
+}
+.tray-menu-shell.theme-dark .tray-menu-exit {
+  color: #f8eefe !important;
+}
+.tray-menu-shell.theme-dark .tray-menu-exit .tray-menu-icon {
+  color: #f2b4ee !important;
+  border: 0 !important;
+  background: rgba(213, 124, 224, .13) !important;
+}
+.tray-menu-shell.theme-light .tray-menu-exit {
+  color: #38264b !important;
+}
+.tray-menu-shell.theme-light .tray-menu-exit .tray-menu-icon {
+  color: #8e4cc1 !important;
+  border: 0 !important;
+  background: rgba(156, 91, 208, .1) !important;
+}
+
+/* A broader action palette stops every press from repeating the same bubble.
+   The label picks a stable style and repeated presses cycle through all nine. */
+.app-shell.effects-on button.button-bubble,
+.app-shell.effects-off button.button-bubble,
+.installer-shell.effects-on button.button-bubble,
+.installer-shell.effects-off button.button-bubble,
+.tray-menu-shell.effects-on button.button-bubble,
+.tray-menu-shell.effects-off button.button-bubble {
+  animation-name: var(--bubble-animation-name, button-bubble-contained) !important;
+}
+.app-shell .titlebar .toolbar > .toolbar-button.button-bubble,
+.installer-shell .installer-toolbar > :is(.installer-tool, .toolbar-button, .installer-window-minimize, .installer-window-close).button-bubble {
+  animation-name: var(--bubble-animation-name, header-control-bubble) !important;
+}
+@keyframes action-bubble-0 {
+  0% { transform: scale(.96); filter: brightness(.99); box-shadow: inset 0 1px rgba(255,255,255,.08); }
+  28% { transform: scale(1.05); filter: brightness(1.08); box-shadow: inset 0 1px rgba(255,255,255,.26), 0 0 0 2px rgba(255,255,255,.08); }
+  58% { transform: scale(.985); filter: brightness(1.025); }
+  100% { transform: scale(1); filter: none; box-shadow: none; }
+}
+@keyframes action-bubble-1 {
+  0% { transform: translateY(1px) scale(.97); }
+  32% { transform: translateY(-2px) scale(1.045); filter: brightness(1.07); box-shadow: 0 7px 16px color-mix(in srgb, var(--violet) 20%, transparent); }
+  68% { transform: translateY(1px) scale(.99); }
+  100% { transform: translateY(0) scale(1); filter: none; box-shadow: none; }
+}
+@keyframes action-bubble-2 {
+  0% { transform: scale(.98, .94); }
+  30% { transform: scale(1.055, 1.025); filter: saturate(1.08); }
+  58% { transform: scale(.985, 1.01); }
+  100% { transform: scale(1); filter: none; }
+}
+@keyframes action-bubble-3 {
+  0% { transform: rotate(0) scale(.97); }
+  30% { transform: rotate(var(--bubble-angle, 2deg)) scale(1.04); filter: brightness(1.06); }
+  64% { transform: rotate(var(--bubble-return-angle, -1deg)) scale(.99); }
+  100% { transform: rotate(0) scale(1); filter: none; }
+}
+@keyframes action-bubble-4 {
+  0% { transform: scale(.97); box-shadow: inset 0 0 0 0 color-mix(in srgb, var(--violet) 0%, transparent); }
+  34% { transform: scale(1.025); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--violet) 28%, transparent), 0 0 0 3px color-mix(in srgb, var(--violet) 11%, transparent); }
+  70% { transform: scale(.99); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--violet) 14%, transparent); }
+  100% { transform: scale(1); box-shadow: none; }
+}
+@keyframes action-bubble-5 {
+  0% { transform: translate3d(0, 0, 0) scale(.97); }
+  28% { transform: translate3d(var(--bubble-x, 2px), var(--bubble-y, -1px), 0) scale(1.045); filter: brightness(1.07); }
+  62% { transform: translate3d(var(--bubble-return-x, -1px), var(--bubble-return-y, 1px), 0) scale(.99); }
+  100% { transform: translate3d(0, 0, 0) scale(1); filter: none; }
+}
+@keyframes action-bubble-6 {
+  0% { transform: scale(.96); filter: brightness(1); box-shadow: none; }
+  25% { transform: scale(1.055); filter: brightness(1.11) saturate(1.12); box-shadow: inset 0 1px rgba(255,255,255,.34), 0 6px 15px color-mix(in srgb, var(--violet) 18%, transparent); }
+  55% { transform: scale(.99); filter: brightness(1.035); }
+  100% { transform: scale(1); filter: none; box-shadow: none; }
+}
+@keyframes action-bubble-7 {
+  0% { transform: scale(1); }
+  24% { transform: scale(.94, 1.035); filter: brightness(.99); }
+  48% { transform: scale(1.045, .975); filter: brightness(1.07); box-shadow: inset 0 1px rgba(255,255,255,.2); }
+  72% { transform: scale(.99, 1.015); }
+  100% { transform: scale(1); filter: none; box-shadow: none; }
+}
+@keyframes action-bubble-8 {
+  0% { transform: translateY(0) scale(.97); }
+  24% { transform: translateY(-2px) scale(1.045); filter: brightness(1.06); }
+  48% { transform: translateY(1px) scale(.985); }
+  72% { transform: translateY(-1px) scale(1.012); }
+  100% { transform: translateY(0) scale(1); filter: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell button.button-bubble,
+  .installer-shell button.button-bubble,
+  .tray-menu-shell button.button-bubble { animation-duration: .01ms !important; }
+}
+
+/* Keep the thumb away from the rounded top/bottom corner and inset it within
+   the native gutter. Blink does not honor horizontal margins on scrollbar
+   tracks, so the right transparent thumb border creates the visible inset. */
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar-track {
+  margin-block: 30px !important;
+  border-radius: 999px !important;
+}
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar {
+  width: 20px !important;
+  height: 10px !important;
+}
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar-thumb {
+  min-height: 28px !important;
+  border: 7px solid transparent !important;
+  border-radius: 999px !important;
+  background: #fff !important;
+  background-clip: content-box !important;
+}
+
+/* All tray actions use the same surface treatment in each theme. */
+.tray-menu-shell.theme-dark {
+  --tray-action-surface: rgba(226, 194, 243, .09);
+  --tray-action-hover: rgba(226, 194, 243, .15);
+  --tray-action-border: rgba(236, 184, 255, .12);
+  --tray-action-hover-border: rgba(255, 191, 243, .27);
+}
+.tray-menu-shell.theme-light {
+  --tray-action-surface: rgba(113, 56, 232, .055);
+  --tray-action-hover: rgba(113, 56, 232, .095);
+  --tray-action-border: rgba(113, 56, 232, .12);
+  --tray-action-hover-border: rgba(113, 56, 232, .22);
+}
+.tray-menu-shell .tray-menu-action,
+.tray-menu-shell .tray-menu-primary,
+.tray-menu-shell .tray-menu-exit {
+  background: var(--tray-action-surface) !important;
+  border-color: var(--tray-action-border) !important;
+}
+.tray-menu-shell .tray-menu-action:hover:not(:disabled),
+.tray-menu-shell .tray-menu-primary:hover:not(:disabled),
+.tray-menu-shell .tray-menu-exit:hover:not(:disabled) {
+  background: var(--tray-action-hover) !important;
+  border-color: var(--tray-action-hover-border) !important;
+}
+
+/* Share the soft glass rim and depth across every control surface. These
+   layers leave each button's existing semantic fill and text color intact. */
+.app-shell.effects-on.theme-dark,
+.installer-shell.effects-on.theme-dark,
+.tray-menu-shell.effects-on.theme-dark {
+  --button-glass-fill: rgba(255, 255, 255, .035);
+  --button-glass-rim: rgba(255, 255, 255, .24);
+  --button-glass-shadow: rgba(8, 3, 17, .14);
+  --button-glass-inset: rgba(217, 184, 243, .07);
+}
+.app-shell.effects-on.theme-light,
+.installer-shell.effects-on.theme-light,
+.tray-menu-shell.effects-on.theme-light {
+  --button-glass-fill: rgba(255, 255, 255, .12);
+  --button-glass-rim: rgba(255, 255, 255, .78);
+  --button-glass-shadow: rgba(55, 37, 73, .085);
+  --button-glass-inset: rgba(96, 64, 126, .045);
+}
+.app-shell.effects-on button:not(.button-bubble),
+.installer-shell.effects-on button:not(.button-bubble),
+.tray-menu-shell.effects-on button:not(.button-bubble) {
+  -webkit-backdrop-filter: blur(12px) saturate(145%) !important;
+  backdrop-filter: blur(12px) saturate(145%) !important;
+  background-color: var(--button-glass-fill) !important;
+  border-top-color: var(--button-glass-rim) !important;
+  box-shadow:
+    inset 0 1px var(--button-glass-rim),
+    inset 0 -1px var(--button-glass-inset),
+    0 4px 12px var(--button-glass-shadow) !important;
+  transition: background-color .18s ease, border-color .18s ease,
+    box-shadow .18s ease, transform .18s cubic-bezier(.2, .82, .24, 1) !important;
+}
+.app-shell.effects-on button:hover:not(:disabled):not(.button-bubble),
+.installer-shell.effects-on button:hover:not(:disabled):not(.button-bubble),
+.tray-menu-shell.effects-on button:hover:not(:disabled):not(.button-bubble) {
+  box-shadow:
+    inset 0 1px color-mix(in srgb, var(--button-glass-rim) 90%, white),
+    inset 0 -1px var(--button-glass-inset),
+    0 6px 16px var(--button-glass-shadow) !important;
+}
+.app-shell.effects-on button:active:not(:disabled):not(.button-bubble),
+.installer-shell.effects-on button:active:not(:disabled):not(.button-bubble),
+.tray-menu-shell.effects-on button:active:not(:disabled):not(.button-bubble) {
+  box-shadow:
+    inset 0 2px 5px rgba(20, 12, 31, .18),
+    inset 0 1px rgba(255, 255, 255, .25) !important;
+}
+
+/* Keep the scrollbar geometry fixed; only its color and inner sheen respond
+   to hover and drag so the thumb reads as actively grabbed. */
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar-thumb {
+  transition: background-color .12s ease, box-shadow .12s ease !important;
+}
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar-thumb:hover {
+  background-color: #e7d9ff !important;
+  background-clip: content-box !important;
+  box-shadow: inset 0 0 0 1px rgba(97, 53, 150, .22) !important;
+}
+.app-shell :is(.account-list-scroll, .events-list, .modal-sheet, .limit-alert-candidates, .right-column)::-webkit-scrollbar-thumb:active {
+  background-color: #9257df !important;
+  background-clip: content-box !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .82) !important;
+}

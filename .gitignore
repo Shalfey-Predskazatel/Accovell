@@ -1,0 +1,15 @@
+node_modules/
+dist/
+src-tauri/target/
+outputs/
+release/
+.env
+.env.*
+!.env.example
+*.log
+*.sqlite
+*.sqlite3
+*.db
+*.bak
+user-data/
+vault/

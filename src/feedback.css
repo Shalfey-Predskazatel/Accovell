@@ -1,0 +1,176 @@
+/* Connected profiles, adapted from the Accovell mark to each glass palette. */
+:is(.app-shell, .installer-shell, .tray-menu-shell) {
+  --mark-surface-top: #594174;
+  --mark-surface-bottom: #322441;
+  --mark-edge: #9071ac;
+  --mark-back: #c5a0e5;
+  --mark-front: #4b3365;
+  --mark-stroke: #ead4ff;
+  --mark-signal: #b7e8d8;
+}
+
+:is(.app-shell, .installer-shell, .tray-menu-shell).theme-light {
+  --mark-surface-top: #fff;
+  --mark-surface-bottom: #ebdff7;
+  --mark-edge: #b497cd;
+  --mark-back: #8c63a7;
+  --mark-front: #e2cef5;
+  --mark-stroke: #633d86;
+  --mark-signal: #2c7966;
+}
+
+#root .brand-mark.brand-mark-visual {
+  border-radius: 12px !important;
+  border: 1px solid var(--mark-edge) !important;
+  background: linear-gradient(145deg, var(--mark-surface-top), var(--mark-surface-bottom)) !important;
+  box-shadow: inset 0 1px rgb(255 255 255 / .24) !important;
+}
+
+#root .product-glyph {
+  display: block;
+  width: 86% !important;
+  height: 86% !important;
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.product-glyph-back, .product-glyph-link { stroke: var(--mark-back); }
+.product-glyph-front { fill: var(--mark-front); stroke: var(--mark-stroke); }
+.product-glyph-person { fill: var(--mark-stroke); }
+.product-glyph-signal { fill: var(--mark-signal); }
+
+.installer-shell.theme-dark { --installer-focus: #ead1ff; }
+.installer-shell.theme-light { --installer-focus: #65318b; }
+
+#root .installer-shell .installer-orbit-core {
+  background: linear-gradient(145deg, var(--mark-surface-top), var(--mark-surface-bottom)) !important;
+  border-color: var(--mark-edge) !important;
+}
+
+#root .installer-shell.theme-light .installer-card-kicker {
+  color: #633d86 !important;
+}
+
+#root .installer-shell.theme-light .installer-success-mark > svg {
+  color: #603287 !important;
+}
+
+@media (min-width: 820px) and (max-width: 900px) {
+  #root .installer-shell .installer-main {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, .95fr);
+    align-content: center;
+    gap: 22px;
+    padding: 18px 24px 12px;
+  }
+
+  #root .installer-shell .installer-hero h1 {
+    font-size: clamp(31px, 4.3vw, 39px);
+    line-height: 1.04;
+  }
+
+  #root .installer-shell .installer-state {
+    min-height: 0;
+    padding: 16px 0;
+  }
+
+  #root .installer-shell .installer-card {
+    min-height: 0;
+    padding: 22px;
+  }
+
+  #root .installer-shell .installer-card-content {
+    min-height: 274px;
+  }
+
+  #root .installer-shell .installer-card h2 {
+    margin-top: 28px;
+    font-size: 24px;
+  }
+
+  #root .installer-shell .installer-card-actions {
+    flex-wrap: wrap;
+    padding-top: 16px;
+  }
+}
+
+.limit-alert-portal .limit-alert-close {
+  position: absolute !important;
+}
+
+.limit-alert-portal .limit-alert-search:focus-within {
+  outline: 2px solid #9870c0;
+  outline-offset: 2px;
+}
+
+.limit-alert-portal .limit-alert-search input:focus-visible {
+  outline: none !important;
+}
+
+.limit-alert-portal .limit-candidate-ready .limit-candidate-action button:not(:disabled) {
+  color: #fff !important;
+  border-color: #745096 !important;
+  background: linear-gradient(145deg, #8551b8, #613589) !important;
+}
+
+.installer-shell :is(button, input):focus-visible {
+  outline: 2px solid var(--installer-focus) !important;
+  outline-offset: 2px !important;
+}
+
+/* Failed operations stay readable above their own dialog without intercepting clicks. */
+#root .app-shell .toast-error {
+  z-index: 30 !important;
+  pointer-events: none;
+}
+
+#root .app-shell .toast-error .toast-dismiss {
+  pointer-events: auto;
+}
+
+/* The button's glass responds at the press edge. The icon then hints at what the action does. */
+@media (prefers-reduced-motion: no-preference) {
+  .effects-on button.button-bubble[data-feedback] > svg,
+  .effects-on button.button-bubble[data-feedback] > .tray-menu-icon > svg {
+    animation: var(--action-gesture, feedback-settle) var(--bubble-duration, 260ms)
+      cubic-bezier(.22, .6, .32, 1) both !important;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  [data-feedback="refresh"] { --action-gesture: feedback-reload; }
+  [data-feedback="account-refresh"] { --action-gesture: feedback-recheck; }
+  [data-feedback="backup"], [data-feedback="installer-install"] { --action-gesture: feedback-download; }
+  [data-feedback="settings"], [data-feedback="codex"] { --action-gesture: feedback-controls; }
+  [data-feedback$="-theme"] { --action-gesture: feedback-theme; }
+  [data-feedback$="-sound"] { --action-gesture: feedback-audio; }
+  [data-feedback$="-effects"] { --action-gesture: feedback-effects; }
+  [data-feedback$="-minimize"], [data-feedback="window-hide"] { --action-gesture: feedback-lower; }
+  [data-feedback="window-maximize"] { --action-gesture: feedback-expand; }
+  [data-feedback="account-add"], [data-feedback="prompt-add"] { --action-gesture: feedback-add; }
+  [data-feedback="account-remove"], [data-feedback="installer-uninstall"] { --action-gesture: feedback-remove; }
+  [data-feedback="account-switch"], [data-feedback="installer-launch"] { --action-gesture: feedback-forward; }
+  [data-feedback="auth-copy"] { --action-gesture: feedback-copy; }
+  [data-feedback="auth-paste"] { --action-gesture: feedback-paste; }
+  [data-feedback="installer-browse"], [data-feedback="installer-folder"] { --action-gesture: feedback-folder; }
+  [data-feedback="tray-open"] { --action-gesture: feedback-expand; }
+  [data-feedback="tray-refresh"] { --action-gesture: feedback-reload; }
+  [data-feedback="tray-exit"] { --action-gesture: feedback-lower; }
+
+  @keyframes feedback-settle { 44% { scale: 1.12; } }
+  @keyframes feedback-reload { 48% { rotate: 70deg; } 72% { rotate: -7deg; } }
+  @keyframes feedback-recheck { 45% { rotate: 40deg; scale: .9; } }
+  @keyframes feedback-download { 38% { translate: 0 2px; } 65% { translate: 0 -1px; } }
+  @keyframes feedback-controls { 40% { scale: 1 .81; } 66% { scale: 1 1.08; } }
+  @keyframes feedback-theme { 45% { rotate: -20deg; scale: .82; } }
+  @keyframes feedback-audio { 32% { scale: 1.15 .88; } 67% { scale: .94 1.06; } }
+  @keyframes feedback-effects { 30% { translate: 0 -2px; } 65% { translate: 0 1px; } }
+  @keyframes feedback-lower { 52% { translate: 0 2px; scale: .84; } }
+  @keyframes feedback-expand { 48% { scale: 1.18 1.08; } }
+  @keyframes feedback-add { 47% { rotate: 35deg; scale: 1.1; } }
+  @keyframes feedback-remove { 40% { rotate: -12deg; } 68% { rotate: 6deg; } }
+  @keyframes feedback-forward { 47% { translate: 3px 0; } }
+  @keyframes feedback-copy { 44% { translate: 1.5px -1.5px; } }
+  @keyframes feedback-paste { 44% { translate: -1px 1.5px; } }
+  @keyframes feedback-folder { 46% { scale: 1.08; rotate: -8deg; } }
+}

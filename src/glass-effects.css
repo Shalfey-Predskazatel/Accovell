@@ -1,0 +1,261 @@
+/* ColorOS-inspired glass: restrained translucency, a reflective rim, and a
+   pointer-following highlight on only the surface under the cursor. */
+.app-shell.effects-on.theme-dark {
+  background:
+    radial-gradient(ellipse at 13% -8%, rgba(214, 111, 255, .15), transparent 36%),
+    radial-gradient(ellipse at 92% 102%, rgba(237, 103, 196, .12), transparent 40%),
+    linear-gradient(145deg, rgba(16, 10, 24, .78), rgba(24, 13, 37, .74) 58%, rgba(33, 16, 44, .76)) !important;
+}
+.app-shell.effects-on.theme-light {
+  background:
+    radial-gradient(ellipse at 8% -10%, rgba(113, 56, 232, .085), transparent 38%),
+    radial-gradient(ellipse at 96% 108%, rgba(90, 72, 176, .065), transparent 40%),
+    linear-gradient(145deg, rgba(249, 248, 252, .84), rgba(240, 238, 246, .8) 55%, rgba(247, 246, 251, .82)) !important;
+}
+.app-shell.effects-on.theme-dark::before {
+  background: radial-gradient(280px circle at var(--pointer-x, 50%) var(--pointer-y, 0%), rgba(215, 151, 255, .18), transparent 72%);
+  mix-blend-mode: screen;
+}
+.app-shell.effects-on.theme-light::before {
+  background: radial-gradient(280px circle at var(--pointer-x, 50%) var(--pointer-y, 0%), rgba(125, 82, 190, .12), transparent 72%);
+  mix-blend-mode: soft-light;
+}
+
+.app-shell.effects-on.theme-dark :is(.overview-card, .account-card, .active-card, .events-card, .modal-sheet, .lock-card, .toast) {
+  border-color: rgba(237, 215, 255, .19);
+  border-top-color: rgba(255, 245, 255, .31);
+  box-shadow: 0 20px 50px rgba(9, 3, 20, .26), inset 0 1px rgba(255, 255, 255, .18), inset 0 -1px rgba(221, 180, 255, .045);
+}
+.app-shell.effects-on.theme-dark .overview-card {
+  background: radial-gradient(ellipse at 91% 0%, rgba(216, 124, 255, .2), transparent 38%), linear-gradient(112deg, rgba(77, 39, 100, .58), rgba(32, 16, 47, .62));
+}
+.app-shell.effects-on.theme-dark :is(.account-card, .active-card, .events-card, .modal-sheet, .lock-card, .toast) {
+  background: linear-gradient(145deg, rgba(69, 37, 88, .64), rgba(30, 16, 44, .72));
+}
+.app-shell.effects-on.theme-dark .account-active {
+  background: radial-gradient(ellipse at 0% 0%, rgba(215, 151, 255, .18), transparent 48%), linear-gradient(135deg, rgba(74, 38, 92, .72), rgba(35, 18, 50, .78));
+}
+
+.app-shell.effects-on.theme-light :is(.overview-card, .account-card, .active-card, .events-card, .modal-sheet, .lock-card, .toast) {
+  border-color: rgba(81, 57, 108, .2);
+  border-top-color: rgba(255, 255, 255, .94);
+  box-shadow: 0 18px 44px rgba(53, 34, 72, .12), inset 0 1px rgba(255, 255, 255, .96), inset 0 -1px rgba(104, 71, 135, .045);
+}
+.app-shell.effects-on.theme-light .overview-card {
+  background: radial-gradient(ellipse at 91% 0%, rgba(160, 119, 213, .17), transparent 40%), linear-gradient(112deg, rgba(255, 255, 255, .82), rgba(239, 232, 247, .79));
+}
+.app-shell.effects-on.theme-light :is(.account-card, .active-card, .events-card, .modal-sheet:not(.modal-exit), .lock-card, .toast) {
+  color: #30213f;
+  border-color: rgba(81, 57, 108, .2) !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .88), rgba(244, 239, 249, .82)) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(145%) !important;
+  backdrop-filter: blur(22px) saturate(145%) !important;
+}
+.app-shell.effects-on.theme-light .account-active {
+  background: radial-gradient(ellipse at 0% 0%, rgba(143, 89, 197, .14), transparent 48%), linear-gradient(135deg, rgba(255, 255, 255, .91), rgba(241, 233, 248, .86)) !important;
+}
+
+.app-shell.effects-on :is(.overview-card, .account-card, .active-card, .events-card, .modal-sheet, .lock-card) {
+  -webkit-backdrop-filter: blur(22px) saturate(155%);
+  backdrop-filter: blur(22px) saturate(155%);
+}
+/* The old permanent will-change hint allocated one compositor layer per
+   account. Promote only the active glass surface instead. */
+.app-shell .account-card { will-change: auto; }
+.app-shell.effects-off :is(.overview-card, .account-card, .active-card, .events-card, .modal-sheet, .lock-card, .toast) {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.app-shell.effects-on :is(.toolbar-button, .version-chip, .window-control, .add-account, .button-primary, .button-secondary, .button-danger, .switch-button, .connect-callout button, .setting-row, .choice-picker-trigger, .interval-control, .interval-wheel-column) {
+  -webkit-backdrop-filter: blur(16px) saturate(155%);
+  backdrop-filter: blur(16px) saturate(155%);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .17), 0 5px 15px rgba(9, 3, 20, .08);
+}
+.app-shell.effects-on.theme-light :is(.toolbar-button, .version-chip, .window-control, .add-account, .button-primary, .button-secondary, .button-danger, .switch-button, .connect-callout button, .setting-row, .choice-picker-trigger, .interval-control, .interval-wheel-column) {
+  border-top-color: rgba(255, 255, 255, .86);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .86), 0 4px 12px rgba(56, 38, 73, .08);
+}
+
+/* Keep popovers crisp while allowing the page color to tint their glass. */
+.app-shell.effects-on.theme-dark :is(.choice-picker-menu, .account-sort-menu) {
+  border-color: rgba(231, 207, 248, .2);
+  background: rgba(36, 20, 51, .91);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+}
+.app-shell.effects-on.theme-light :is(.choice-picker-menu, .account-sort-menu) {
+  color: #30213f !important;
+  border-color: rgba(81, 57, 108, .24) !important;
+  background: rgba(250, 247, 253, .94) !important;
+  box-shadow: 0 16px 36px rgba(43, 29, 58, .16), inset 0 1px rgba(255, 255, 255, .98) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
+  backdrop-filter: blur(20px) saturate(145%) !important;
+}
+.app-shell.effects-on.theme-light :is(.modal-backdrop, .auth-progress-backdrop) {
+  background: rgba(43, 34, 54, .2) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(112%) !important;
+  backdrop-filter: blur(14px) saturate(112%) !important;
+}
+
+/* Pointer light is projected onto one surface at a time. */
+.app-shell.effects-on .pointer-glass-active {
+  position: relative;
+  isolation: isolate;
+  --glass-x: 50%;
+  --glass-y: 50%;
+}
+.app-shell.effects-on .pointer-glass-active:not([data-tooltip]):is(.overview-card, .account-card, .active-card, .events-card, .modal-sheet, .toolbar-button, .add-account, .button-primary, .button-secondary, .button-danger, .switch-button, .connect-callout button, .setting-row, .choice-picker-trigger, .interval-control, .interval-wheel-row)::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  z-index: -1 !important;
+  border-radius: inherit !important;
+  background: radial-gradient(ellipse 240px 150px at var(--glass-x) var(--glass-y), rgba(255, 255, 255, .21), rgba(255, 255, 255, .055) 35%, transparent 76%) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  pointer-events: none !important;
+}
+.app-shell.effects-on.theme-light .pointer-glass-active:not([data-tooltip]):is(.overview-card, .account-card, .active-card, .events-card, .modal-sheet, .toolbar-button, .add-account, .button-primary, .button-secondary, .button-danger, .switch-button, .connect-callout button, .setting-row, .choice-picker-trigger, .interval-control, .interval-wheel-row)::after {
+  background: radial-gradient(ellipse 240px 150px at var(--glass-x) var(--glass-y), rgba(118, 74, 172, .15), rgba(255, 255, 255, .09) 34%, transparent 76%) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  /* The dashboard has an earlier important hover transform.  Keep this rule
+     more specific so the pointer-driven stretch is the transform that wins. */
+  .app-shell.effects-on button.pointer-glass-active:hover:not(:disabled):not(:active):not(.button-bubble) {
+    transform: perspective(850px) rotateX(var(--glass-tilt-y, 0deg)) rotateY(var(--glass-tilt-x, 0deg)) translateY(-1px) scale(var(--glass-stretch-x, 1), var(--glass-stretch-y, 1)) !important;
+    transform-origin: var(--glass-x, 50%) var(--glass-y, 50%);
+    transition: transform .18s cubic-bezier(.2, .82, .24, 1), filter .2s ease, box-shadow .2s ease !important;
+    will-change: transform !important;
+  }
+  .app-shell.effects-on .pointer-glass-active:is(.overview-card, .account-card, .active-card, .events-card, .modal-sheet) {
+    box-shadow: 0 22px 52px rgba(9, 3, 20, .25), inset 0 1px rgba(255, 255, 255, .22), inset 0 -1px rgba(221, 180, 255, .06);
+  }
+}
+.app-shell.effects-on :is(.modal-sheet, .account-card, button) { transition-timing-function: cubic-bezier(.2, .82, .24, 1); }
+.app-shell.effects-on .button-bubble { filter: saturate(1.12) brightness(1.035); transform-origin: 50% 50%; }
+
+/* Lower blur and compositor cost across long account lists.  The native
+   Windows Mica/Blur surface supplies the broad window material; the cards
+   only need a light local blur to keep the glass edge visible. */
+.app-shell.effects-on :is(.account-card) {
+  -webkit-backdrop-filter: blur(12px) saturate(132%) !important;
+  backdrop-filter: blur(12px) saturate(132%) !important;
+}
+.app-shell.effects-on :is(.overview-card, .active-card, .events-card, .modal-sheet, .lock-card, .toast) {
+  -webkit-backdrop-filter: blur(18px) saturate(142%) !important;
+  backdrop-filter: blur(18px) saturate(142%) !important;
+}
+.app-shell.effects-on :is(button, .toolbar-button, .version-chip, .window-control, .setting-row, .choice-picker-trigger, .interval-control, .interval-wheel-column) {
+  -webkit-backdrop-filter: blur(8px) saturate(132%) !important;
+  backdrop-filter: blur(8px) saturate(132%) !important;
+}
+/* The trailing hover rule in theme.css reserves a compositor layer for every
+   button.  Only the one hovered/animating control should be promoted. */
+.app-shell.effects-on button { will-change: auto !important; }
+.app-shell.effects-on button.pointer-glass-active:hover:not(:disabled):not(:active):not(.button-bubble) { will-change: transform !important; }
+
+/* The tooltip system renders its bubble in a portal and intentionally hides
+   data-tooltip pseudos. Re-enable just this reflective, non-textual pseudo on
+   the glass target so the pointer light is visible on buttons as well. */
+.app-shell.effects-on .pointer-glass-active:not([data-tooltip])::after,
+.installer-shell.effects-on .pointer-glass-active:not([data-tooltip])::after {
+  display: block !important;
+}
+.app-shell.effects-on .pointer-glass-active:not([data-tooltip])::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  border-radius: inherit !important;
+  background: radial-gradient(ellipse 240px 150px at var(--glass-x) var(--glass-y), rgba(255, 255, 255, .21), rgba(255, 255, 255, .055) 35%, transparent 76%) !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+.app-shell.effects-on.theme-light .pointer-glass-active:not([data-tooltip])::after {
+  background: radial-gradient(ellipse 240px 150px at var(--glass-x) var(--glass-y), rgba(118, 74, 172, .15), rgba(255, 255, 255, .09) 34%, transparent 76%) !important;
+}
+
+/* Installer runs in the same transparent Tauri window but has its own route;
+   give it the same native-compatible tint and per-surface pointer material. */
+.installer-shell.effects-on.theme-dark {
+  color: #f8effc;
+  background: radial-gradient(ellipse at 13% -8%, rgba(214, 111, 255, .15), transparent 36%), radial-gradient(ellipse at 92% 102%, rgba(237, 103, 196, .12), transparent 40%), linear-gradient(145deg, rgba(16, 10, 24, .78), rgba(24, 13, 37, .74) 58%, rgba(33, 16, 44, .76));
+  -webkit-backdrop-filter: blur(11px) saturate(118%);
+  backdrop-filter: blur(11px) saturate(118%);
+}
+.installer-shell.effects-on.theme-light {
+  color: #30213f;
+  background: radial-gradient(ellipse at 8% -10%, rgba(113, 56, 232, .085), transparent 38%), radial-gradient(ellipse at 96% 108%, rgba(90, 72, 176, .065), transparent 40%), linear-gradient(145deg, rgba(249, 248, 252, .84), rgba(240, 238, 246, .8) 55%, rgba(247, 246, 251, .82));
+  -webkit-backdrop-filter: blur(11px) saturate(118%);
+  backdrop-filter: blur(11px) saturate(118%);
+}
+.installer-shell.effects-on .installer-card {
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  backdrop-filter: blur(18px) saturate(145%);
+}
+.installer-shell.effects-on button {
+  -webkit-backdrop-filter: blur(9px) saturate(135%);
+  backdrop-filter: blur(9px) saturate(135%);
+}
+.installer-shell.effects-on .pointer-glass-active {
+  position: relative;
+  isolation: isolate;
+  --glass-x: 50%;
+  --glass-y: 50%;
+}
+.installer-shell.effects-on .pointer-glass-active:not([data-tooltip])::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  border-radius: inherit !important;
+  background: radial-gradient(ellipse 240px 150px at var(--glass-x) var(--glass-y), rgba(255, 255, 255, .2), rgba(255, 255, 255, .05) 35%, transparent 76%) !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+.installer-shell.effects-on.theme-light .pointer-glass-active:not([data-tooltip])::after {
+  background: radial-gradient(ellipse 240px 150px at var(--glass-x) var(--glass-y), rgba(118, 74, 172, .15), rgba(255, 255, 255, .09) 34%, transparent 76%) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  .installer-shell.effects-on button.pointer-glass-active:hover:not(:disabled):not(:active):not(.button-bubble) {
+    transform: perspective(850px) rotateX(var(--glass-tilt-y, 0deg)) rotateY(var(--glass-tilt-x, 0deg)) translateY(-1px) scale(var(--glass-stretch-x, 1), var(--glass-stretch-y, 1)) !important;
+    transform-origin: var(--glass-x, 50%) var(--glass-y, 50%);
+    transition: transform .18s cubic-bezier(.2, .82, .24, 1), filter .2s ease, box-shadow .2s ease !important;
+  }
+}
+
+/* Installer panels and buttons share the same reflective material. */
+.installer-shell.effects-on .installer-card {
+  border-color: rgba(255, 255, 255, .2);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .045));
+  box-shadow: 0 22px 55px rgba(12, 6, 24, .22), inset 0 1px rgba(255, 255, 255, .2);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(150%);
+}
+.installer-shell.effects-on button {
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
+  transition-timing-function: cubic-bezier(.2, .82, .24, 1);
+}
+.installer-shell.effects-on.theme-light .installer-card {
+  color: #30213f;
+  border-color: rgba(81, 57, 108, .2);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .91), rgba(244, 239, 249, .84));
+  box-shadow: 0 20px 48px rgba(53, 34, 72, .12), inset 0 1px rgba(255, 255, 255, .96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell.effects-on .pointer-glass-active,
+  .app-shell.effects-on button.pointer-glass-active:hover:not(:disabled),
+  .app-shell.effects-on .button-bubble,
+  .installer-shell.effects-on .button-bubble {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

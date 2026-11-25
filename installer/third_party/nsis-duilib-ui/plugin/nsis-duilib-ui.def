@@ -1,0 +1,20 @@
+LIBRARY "nsis-duilib-ui"
+EXPORTS
+  ConcealHost
+  GetVersion=NsisDuiGetVersion
+  Hide
+  Init
+  PollEvent
+  ResetProgress
+  SetPage
+  SetProgress
+  SetInstallDirectory
+  SetPerUserInstallDirectory
+  SetPerMachineInstallDirectory
+  SetStatus
+  SetControlText
+  SetVersion
+  Show
+  Shutdown
+  ShutdownHidden
+  WaitForEvent

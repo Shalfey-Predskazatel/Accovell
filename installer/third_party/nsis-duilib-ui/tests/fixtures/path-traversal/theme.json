@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "invalid-path-theme",
+  "name": "Invalid path theme",
+  "minEngineVersion": "0.1.0",
+  "window": {
+    "width": 960,
+    "height": 600,
+    "radius": 16
+  },
+  "pages": {
+    "installing": "../outside.xml"
+  },
+  "tokens": "tokens.json",
+  "locales": {
+    "en-US": "en-US.json"
+  }
+}
+

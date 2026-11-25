@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window size="{{window.width}},{{window.height}}" caption="0,0,0,68" roundcorner="{{window.radius}},{{window.radius}}" gdiplustext="true" textrenderinghint="3">
+  <Font id="0" name="{{font.family}}" size="{{font.bodySize}}" default="true" />
+  <Font id="1" bold="true" name="Segoe UI Semibold" size="31" />
+  <Font id="2" bold="true" name="Segoe UI Semibold" size="16" />
+  <Font id="3" bold="true" name="Segoe UI Semibold" size="13" />
+  <Font id="4" name="Segoe UI" size="11" />
+  <Container name="page-root">
+    <LightBackdrop float="0,0,1,1" canvascolor="{{color.canvas}}" bluecolor="{{color.blueTint}}" pinkcolor="{{color.pinkTint}}" />
+    <VerticalLayout float="0,0,1,1">
+      <HorizontalLayout height="72" inset="30,17,24,17" childvalign="vcenter">
+        <BrandMark animated="true" outercolor="{{color.markOuter}}" outlinecolor="{{color.markOutline}}" raycolor="{{color.markRays}}" width="38" height="38" brandcolor="{{color.brand}}" />
+        <Label text="Codex Accounts" font="2" textcolor="{{color.textPrimary}}" width="190" height="38" padding="12,0,0,0" />
+        <Control />
+        <SoftButton ripplecolor="{{color.brandEnd}}" name="setup-language" text="{{string.setup.language}}" textcolor="{{color.textSecondary}}" hottextcolor="{{color.textPrimary}}" bkcolor="{{color.surfaceMuted}}" hotbkcolor="{{color.surfaceStrong}}" pushedbkcolor="{{color.surfaceStrong}}" width="76" height="34" borderround="9,9" />
+        <Control width="8" />
+        <SoftButton ripplecolor="{{color.brandEnd}}" name="setup-theme" text="{{string.setup.themeAction}}" textcolor="{{color.textSecondary}}" hottextcolor="{{color.textPrimary}}" bkcolor="{{color.surfaceMuted}}" hotbkcolor="{{color.surfaceStrong}}" pushedbkcolor="{{color.surfaceStrong}}" width="108" height="34" borderround="9,9" />
+        <Control width="8" />
+        <SoftButton ripplecolor="{{color.brandEnd}}" name="setup-sound" text="{{string.setup.soundOn}}" textcolor="{{color.textSecondary}}" hottextcolor="{{color.textPrimary}}" bkcolor="{{color.surfaceMuted}}" hotbkcolor="{{color.surfaceStrong}}" pushedbkcolor="{{color.surfaceStrong}}" width="92" height="34" borderround="9,9" />
+        <Control width="13" />
+        <CaptionButton name="minbtn" kind="minimize" iconcolor="{{color.windowMinimize}}" hoticoncolor="{{color.windowMinimizeHot}}" hotbkcolor="{{color.windowMinimizeBg}}" pushedbkcolor="{{color.windowMinimizePressed}}" width="36" height="34" borderround="10,10" />
+        <Control width="6" />
+        <CaptionButton name="closebtn" kind="close" iconcolor="{{color.windowClose}}" hoticoncolor="{{color.windowCloseHot}}" hotbkcolor="{{color.windowCloseBg}}" pushedbkcolor="{{color.windowClosePressed}}" width="36" height="34" borderround="10,10" />
+      </HorizontalLayout>
+      <HorizontalLayout inset="44,28,44,24">
+        <VerticalLayout width="446" inset="0,3,0,0">
+          <Label text="{{string.setup.eyebrow}}" textcolor="{{color.brand}}" font="4" height="21" />
+          <Control height="10" />
+          <Label text="{{string.welcome.title}}" textcolor="{{color.textPrimary}}" font="1" height="78" endellipsis="true" />
+          <Label text="{{string.welcome.subtitle}}" textcolor="{{color.textSecondary}}" height="50" wordbreak="true" />
+          <Control height="14" />
+          <HorizontalLayout height="34" childvalign="vcenter">
+            <Label text="01" textcolor="{{color.brand}}" font="3" width="34" />
+            <Label text="{{string.setup.feature.profiles}}" textcolor="{{color.textPrimary}}" />
+          </HorizontalLayout>
+          <HorizontalLayout height="34" childvalign="vcenter">
+            <Label text="02" textcolor="{{color.brand}}" font="3" width="34" />
+            <Label text="{{string.setup.feature.limits}}" textcolor="{{color.textPrimary}}" />
+          </HorizontalLayout>
+          <HorizontalLayout height="34" childvalign="vcenter">
+            <Label text="03" textcolor="{{color.brand}}" font="3" width="34" />
+            <Label text="{{string.setup.feature.settings}}" textcolor="{{color.textPrimary}}" />
+          </HorizontalLayout>
+          <Control />
+          <HorizontalLayout height="54">
+            <SoftButton ripplecolor="{{color.brandEnd}}" gradientstart="{{color.brandStart}}" gradientend="{{color.brandEnd}}" name="primary" text="{{string.welcome.start}}" textcolor="{{color.ink}}" bkcolor="{{color.brand}}" hotbkcolor="{{color.brandHover}}" pushedbkcolor="{{color.brandPressed}}" width="250" height="52" borderround="13,13" font="3" />
+            <Control />
+          </HorizontalLayout>
+          <Label text="{{string.setup.version}}" textcolor="{{color.textSecondary}}" height="20" font="4" />
+        </VerticalLayout>
+        <Control width="30" />
+        <GlassPanel width="336" height="386" padding="24,24,24,24" inset="24,22,24,20" bkcolor="{{color.heroSurface}}" bordercolor="{{color.border}}" bordersize="1" borderround="18,18">
+          <VerticalLayout>
+            <HorizontalLayout height="68" childvalign="vcenter">
+              <VerticalLayout>
+                <Label text="{{string.setup.panel.title}}" textcolor="{{color.textPrimary}}" font="2" height="27" />
+                <Label text="{{string.setup.panel.body}}" textcolor="{{color.textSecondary}}" height="41" wordbreak="true" />
+              </VerticalLayout>
+              <Control width="7" />
+              <OrbitIndicator width="52" height="52" brandcolor="{{color.brand}}" secondarycolor="{{color.brandEnd}}" tertiarycolor="{{color.orbitAccent}}" />
+            </HorizontalLayout>
+            <Control height="10" />
+            <Label text="{{string.welcome.pathLabel}}" textcolor="{{color.brand}}" font="4" height="21" />
+            <HorizontalLayout height="54" bkcolor="{{color.surfaceMuted}}" bordercolor="{{color.border}}" bordersize="1" borderround="11,11" inset="13,0,9,0" childvalign="vcenter">
+              <Label name="install-directory" text="{{runtime.installDirectory}}" textcolor="{{color.textPrimary}}" endellipsis="true" />
+              <SoftButton ripplecolor="{{color.brandEnd}}" name="browse" text="{{string.welcome.change}}" textcolor="{{color.textPrimary}}" hottextcolor="{{color.textPrimary}}" bkcolor="{{color.surfaceStrong}}" hotbkcolor="{{color.brand}}" pushedbkcolor="{{color.brandPressed}}" width="66" height="34" borderround="9,9" />
+            </HorizontalLayout>
+            <Control height="11" />
+            <Label text="{{string.setup.pathNote}}" textcolor="{{color.textSecondary}}" height="34" />
+            <Control />
+            <HorizontalLayout height="48" childvalign="vcenter">
+              <BrandMark animated="true" outercolor="{{color.markOuter}}" outlinecolor="{{color.markOutline}}" raycolor="{{color.markRays}}" width="28" height="28" brandcolor="{{color.brand}}" />
+              <Label text="{{string.setup.footer}}" textcolor="{{color.textSecondary}}" padding="11,0,0,0" endellipsis="true" />
+            </HorizontalLayout>
+          </VerticalLayout>
+        </GlassPanel>
+      </HorizontalLayout>
+      <HorizontalLayout height="28" inset="44,0,44,0" childvalign="vcenter">
+        <Label text="{{string.welcome.terms}}" textcolor="{{color.textSecondary}}" font="4" />
+        <Control />
+        <Label text="{{runtime.version}}" textcolor="{{color.textSecondary}}" font="4" />
+      </HorizontalLayout>
+    </VerticalLayout>
+  </Container>
+</Window>
+
