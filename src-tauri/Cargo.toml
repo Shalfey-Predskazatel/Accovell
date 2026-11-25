@@ -3,6 +3,7 @@ name = "codex-accounts"
 version = "0.1.0"
 description = "Локальный менеджер аккаунтов Codex"
 authors = ["Codex Accounts"]
+license = "MIT"
 edition = "2021"
 
 [lib]

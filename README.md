@@ -39,7 +39,9 @@ Accovell stores its profiles on the local PC and uses Windows DPAPI for credenti
 
 The repository includes the application source and installer source. See [BUILDING.md](BUILDING.md). Offline dependency caches from the private handoff bundle are not included.
 
-The source is public for inspection. No reuse license is specified for this project. Third-party components keep their own license terms.
+## License
+
+Original Accovell source code is licensed under the [MIT License](LICENSE). The license does not cover the product name, logos, artwork, or third-party components. Dependencies, fonts, and bundled installer assets retain their own terms; see [third-party notices](NOTICE.md) and the notices under `installer/third_party/`.
 
 ## Product name
 
